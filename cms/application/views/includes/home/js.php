@@ -85,12 +85,20 @@
           let {status, message} = response;
 
           if(status === 'ok'){
-            alert(message);
+            Swal.fire(
+              'Success!',
+              message,
+              'success'
+            )
             $('#editModal').modal('hide');
             renderAllProducts();
           }
           else{
-            alert(message);
+            Swal.fire(
+              'Error!',
+              message,
+              'error'
+            )
           }
         })
       }
