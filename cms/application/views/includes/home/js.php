@@ -12,7 +12,7 @@
       if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
         Swal.fire(
           'Error!',
-          'Name, price, and quantity cannot be empty!',
+          'Name, price, or quantity cannot be empty!',
           'error'
         )
       }
@@ -67,7 +67,11 @@
       let imageURL = $('#editTextImageURL').val().trim();
 
       if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
-        alert('Cannot be empty!');
+        Swal.fire(
+          'Error!',
+          'Name, price, or quantity cannot be empty!',
+          'error'
+        )
       }
       else{
         let data = {
