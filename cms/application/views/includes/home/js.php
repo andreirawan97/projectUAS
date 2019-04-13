@@ -10,7 +10,11 @@
       let imageURL = $('#inputTextImageURL').val().trim();
       
       if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
-        alert('Cannot be empty!');
+        Swal.fire(
+          'Error!',
+          'Name, price, and quantity cannot be empty!',
+          'error'
+        )
       }
       else{
         let data = {
@@ -27,12 +31,27 @@
           let {status, message} = response;
 
           if(status === 'ok'){
-            alert(message);
-            $('#addNewModal').modal('hide');
-            renderAllProducts();
+            Swal.fire({
+              title: 'Success!',
+              text: message,
+              type: 'success',
+              showCancelButton: false,
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'Great!'
+            }).then((result) => {
+              if (result.value) {
+                $('#addNewModal').modal('hide');
+                renderAllProducts();
+              }
+            })
+
           }
           else{
-            alert(message);
+            Swal.fire(
+              'Error!',
+              message,
+              'error'
+            )
           }
 
         })
@@ -82,18 +101,35 @@
   }
 
   function deleteProduct(objBtn){
-    let productID = objBtn.getAttribute('productID');
-    console.log(productID);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        let productID = objBtn.getAttribute('productID');
+        console.log(productID);
 
-    $.post('index.php/home/deleteProduct', {productID}, (res) => {
-      let response = JSON.parse(res);
+        $.post('index.php/home/deleteProduct', {productID}, (res) => {
+          let response = JSON.parse(res);
 
-      let {status, message} = response;
-      if(status === 'ok'){
-        alert(message);
-        renderAllProducts();
+          let {status, message} = response;
+          if(status === 'ok'){
+            Swal.fire(
+              'Deleted!',
+              message,
+              'success'
+            )
+            renderAllProducts();
+          }
+        });
       }
-    });
+    })
+
   }
 
   function resetForm(){
