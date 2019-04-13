@@ -42,16 +42,16 @@
         <div class="modal-body">
           <form id="newProductForm">
             <div class="form-group">
-              <label for="inputTextName">Name</label>
+              <label for="inputTextName">Name <a style="color: tomato">*</a></label>
               <input type="text" class="form-control" id="inputTextName" placeholder="Enter product name...">
             </div>
             <div class="form-group">
-              <label for="inputTextPrice">Price</label>
-              <input type="text" class="form-control" id="inputTextPrice" placeholder="Enter product price...">
+              <label for="inputTextPrice">Price <a style="color: tomato">*</a></label>
+              <input value='0' min='0' type="number" class="form-control" id="inputTextPrice" placeholder="Enter product price...">
             </div>
             <div class="form-group">
-              <label for="inputTextQuantity">Quantity</label>
-              <input type="text" class="form-control" id="inputTextQuantity" placeholder="Enter product quantity...">
+              <label for="inputTextQuantity">Quantity <a style="color: tomato">*</a></label>
+              <input value='0' min='0' type="number" class="form-control" id="inputTextQuantity" placeholder="Enter product quantity...">
             </div>
             <div class="form-group">
               <label for="inputTextDescription">Description</label>
