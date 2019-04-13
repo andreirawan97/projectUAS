@@ -12,7 +12,7 @@
       if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
         Swal.fire(
           'Error!',
-          'Name, price, and quantity cannot be empty!',
+          'Name, price, or quantity cannot be empty!',
           'error'
         )
       }
@@ -57,6 +57,56 @@
         })
       }
     })
+
+    $('#updateBtn').click(() => {
+      let productID = $('#editTextProductID').val().trim();
+      let name = $('#editTextName').val().trim();
+      let price = $('#editTextPrice').val().trim();
+      let quantity = $('#editTextQuantity').val().trim();
+      let description = $('#editTextDescription').val().trim();
+      let imageURL = $('#editTextImageURL').val().trim();
+
+      if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+        Swal.fire(
+          'Error!',
+          'Name, price, or quantity cannot be empty!',
+          'error'
+        )
+      }
+      else{
+        let data = {
+          productID,
+          name,
+          price,
+          quantity,
+          description,
+          imageURL
+        }
+
+        $.post('index.php/home/updateProduct', data, (res) => {
+          let response = JSON.parse(res);
+
+          let {status, message} = response;
+
+          if(status === 'ok'){
+            Swal.fire(
+              'Success!',
+              message,
+              'success'
+            )
+            $('#editModal').modal('hide');
+            renderAllProducts();
+          }
+          else{
+            Swal.fire(
+              'Error!',
+              message,
+              'error'
+            )
+          }
+        })
+      }
+    })
   })
 
   function renderAllProducts(){
@@ -67,7 +117,7 @@
       if(status === 'ok'){
         $('#tbodyProducts').html('');
         datas.forEach((data, i) => {
-          let {productID, name, price, quantity, description} = data;
+          let {productID, name, price, quantity, description,imageURL} = data;
 
           $('#tbodyProducts').append(`
             <tr>
@@ -77,9 +127,14 @@
               <td>${quantity}</td>
               <td>${description !== '' ? description : `<i>No Description</i>`}</td>
               <td>
-                <button 
+              <button 
                   id='editBtn' 
-                  productID='${productID}' 
+                  productID='${productID}'
+                  name='${name}'
+                  price='${price}'
+                  quantity='${quantity}'
+                  description='${description}'
+                  imageURL='${imageURL}'
                   class='btn btn-outline-primary btn-sm'
                   onClick='editProduct(this)'>
                     edit
@@ -130,6 +185,24 @@
       }
     })
 
+  }
+
+  function editProduct(objBtn){
+    let productID = objBtn.getAttribute('productID');
+    let name = objBtn.getAttribute('name');
+    let price = objBtn.getAttribute('price');
+    let quantity = objBtn.getAttribute('quantity');
+    let description = objBtn.getAttribute('description');
+    let imageURL = objBtn.getAttribute('imageURL');
+    console.log(productID);
+    
+    $('#editTextProductID').val(productID);
+    $('#editTextName').val(name);
+    $('#editTextPrice').val(price);
+    $('#editTextQuantity').val(quantity);
+    $('#editTextDescription').val(description);
+    $('#editTextImageURL').val(imageURL);
+    $('#editModal').modal('show');
   }
 
   function resetForm(){

@@ -48,13 +48,14 @@
     }
 
     public function updateProduct(){
+      $productID = $this->input->post('productID');
       $name = $this->input->post('name');
       $price = $this->input->post('price');
       $quantity = $this->input->post('quantity');
       $description = $this->input->post('description');
       $imageURL = $this->input->post('imageURL');
 
-      $response = $this->HomeModel->updateProduct($name, $price, $quantity, $description, $imageURL);
+      $response = $this->HomeModel->updateProduct($name, $price, $quantity, $description, $imageURL,$productID);
     
       if($response){
         echo json_encode(array('status' => 'ok', 'message' => 'The product has been successfully updated!'));

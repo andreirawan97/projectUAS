@@ -19,8 +19,15 @@
       return true;
     }
 
-    function updateProduct($name, $price, $quantity, $description, $imageURL){
-      // Do something
+    function updateProduct($name, $price, $quantity, $description, $imageURL, $productID){
+      $this->db->query("UPDATE products SET name = '$name',
+       price = '$price',
+       quantity = '$quantity', 
+       description = '$description',
+       imageURL = '$imageURL'
+       WHERE productID = '$productID'");
+      
+      return true;
     }
   }
 ?>
