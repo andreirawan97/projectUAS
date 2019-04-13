@@ -20,12 +20,13 @@
     }
 
     function updateProduct($name, $price, $quantity, $description, $imageURL, $productID){
-      $this->db->query("UPDATE products SET name = '$name' WHERE productID = '$productID'");
-      $this->db->query("UPDATE products SET price = '$price' WHERE productID = '$productID'");
-      $this->db->query("UPDATE products SET quantity = '$quantity' WHERE productID = '$productID'");
-      $this->db->query("UPDATE products SET description = '$description' WHERE productID = '$productID'");
-      $this->db->query("UPDATE products SET imageURL = '$imageURL' WHERE productID = '$productID'");
-
+      $this->db->query("UPDATE products SET name = '$name',
+       price = '$price',
+       quantity = '$quantity', 
+       description = '$description',
+       imageURL = '$imageURL'
+       WHERE productID = '$productID'");
+      
       return true;
     }
   }
