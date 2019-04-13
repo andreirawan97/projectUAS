@@ -85,15 +85,15 @@
           <form id="newProductForm">
             <input type="hidden" id="editTextProductID" />
             <div class="form-group">
-              <label for="editTextName">Name</label>
+              <label for="editTextName">Name <a style="color: tomato">*</a></label>
               <input type="text" class="form-control" id="editTextName" placeholder="Enter product name...">
             </div>
             <div class="form-group">
-              <label for="editTextPrice">Price</label>
+              <label for="editTextPrice">Price <a style="color: tomato">*</a></label>
               <input type="number" class="form-control" id="editTextPrice" placeholder="Enter product price...">
             </div>
             <div class="form-group">
-              <label for="editTextQuantity">Quantity</label>
+              <label for="editTextQuantity">Quantity <a style="color: tomato">*</a></label>
               <input type="number" class="form-control" id="editTextQuantity" placeholder="Enter product quantity...">
             </div>
             <div class="form-group">
