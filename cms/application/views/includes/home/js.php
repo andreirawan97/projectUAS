@@ -57,6 +57,44 @@
         })
       }
     })
+
+    $('#updateBtn').click(() => {
+      let productID = $('#editTextProductID').val().trim();
+      let name = $('#editTextName').val().trim();
+      let price = $('#editTextPrice').val().trim();
+      let quantity = $('#editTextQuantity').val().trim();
+      let description = $('#editTextDescription').val().trim();
+      let imageURL = $('#editTextImageURL').val().trim();
+
+      if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+        alert('Cannot be empty!');
+      }
+      else{
+        let data = {
+          productID,
+          name,
+          price,
+          quantity,
+          description,
+          imageURL
+        }
+
+        $.post('index.php/home/updateProduct', data, (res) => {
+          let response = JSON.parse(res);
+
+          let {status, message} = response;
+
+          if(status === 'ok'){
+            alert(message);
+            $('#editModal').modal('hide');
+            renderAllProducts();
+          }
+          else{
+            alert(message);
+          }
+        })
+      }
+    })
   })
 
   function renderAllProducts(){
@@ -67,7 +105,7 @@
       if(status === 'ok'){
         $('#tbodyProducts').html('');
         datas.forEach((data, i) => {
-          let {productID, name, price, quantity, description} = data;
+          let {productID, name, price, quantity, description,imageURL} = data;
 
           $('#tbodyProducts').append(`
             <tr>
@@ -77,9 +115,14 @@
               <td>${quantity}</td>
               <td>${description !== '' ? description : `<i>No Description</i>`}</td>
               <td>
-                <button 
+              <button 
                   id='editBtn' 
-                  productID='${productID}' 
+                  productID='${productID}'
+                  name='${name}'
+                  price='${price}'
+                  quantity='${quantity}'
+                  description='${description}'
+                  imageURL='${imageURL}'
                   class='btn btn-outline-primary btn-sm'
                   onClick='editProduct(this)'>
                     edit
@@ -130,6 +173,24 @@
       }
     })
 
+  }
+
+  function editProduct(objBtn){
+    let productID = objBtn.getAttribute('productID');
+    let name = objBtn.getAttribute('name');
+    let price = objBtn.getAttribute('price');
+    let quantity = objBtn.getAttribute('quantity');
+    let description = objBtn.getAttribute('description');
+    let imageURL = objBtn.getAttribute('imageURL');
+    console.log(productID);
+    
+    $('#editTextProductID').val(productID);
+    $('#editTextName').val(name);
+    $('#editTextPrice').val(price);
+    $('#editTextQuantity').val(quantity);
+    $('#editTextDescription').val(description);
+    $('#editTextImageURL').val(imageURL);
+    $('#editModal').modal('show');
   }
 
   function resetForm(){

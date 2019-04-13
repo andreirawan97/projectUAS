@@ -71,5 +71,49 @@
     </div>
   </div>
 
+  <!-- Modal about edit -->
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="newProductForm">
+            <input type="hidden" id="editTextProductID" />
+            <div class="form-group">
+              <label for="editTextName">Name</label>
+              <input type="text" class="form-control" id="editTextName" placeholder="Enter product name...">
+            </div>
+            <div class="form-group">
+              <label for="editTextPrice">Price</label>
+              <input type="number" class="form-control" id="editTextPrice" placeholder="Enter product price...">
+            </div>
+            <div class="form-group">
+              <label for="editTextQuantity">Quantity</label>
+              <input type="number" class="form-control" id="editTextQuantity" placeholder="Enter product quantity...">
+            </div>
+            <div class="form-group">
+              <label for="editTextDescription">Description</label>
+              <input type="text" class="form-control" id="editTextDescription" placeholder="Enter product description...">
+            </div>
+            <div class="form-group">
+              <label for="editTextImageURL">Image URL</label>
+              <input type="text" class="form-control" id="editTextImageURL" placeholder="Enter product image url...">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="updateBtn" type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </body>
 </html>
