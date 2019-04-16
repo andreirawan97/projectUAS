@@ -107,12 +107,22 @@
         })
       }
     })
+
+    $('#searchKeyword').keyup(() =>{
+      let searchKeyword = $('#searchKeyword').val().trim();
+
+      if(isEmpty(searchKeyword)){
+        renderAllProducts();
+      }else{
+        renderSearchedProducts(searchKeyword);
+      }
+    })
   })
 
   function renderAllProducts(){
     $.get('index.php/home/getAllProducts', (res) => {
       let response = JSON.parse(res);
-
+      
       let {status, datas} = response;
       if(status === 'ok'){
         $('#tbodyProducts').html('');
@@ -203,6 +213,52 @@
     $('#editTextDescription').val(description);
     $('#editTextImageURL').val(imageURL);
     $('#editModal').modal('show');
+  }
+
+  function renderSearchedProducts(searchKeyword){
+    $.post('index.php/home/getSearchedProducts', {searchKeyword}, (res) => {
+      let response = JSON.parse(res);
+      
+      let {status, datas} = response;
+      if(status === 'ok'){
+        $('#tbodyProducts').html('');
+        datas.forEach((data, i) => {
+          let {productID, name, price, quantity, description,imageURL} = data;
+
+          $('#tbodyProducts').append(`
+            <tr>
+              <th scope='row'>${i+1}</th>
+              <td>${name}</td>
+              <td>$${price}</td>
+              <td>${quantity}</td>
+              <td>${description !== '' ? description : `<i>No Description</i>`}</td>
+              <td>
+              <button 
+                  id='editBtn' 
+                  productID='${productID}'
+                  name='${name}'
+                  price='${price}'
+                  quantity='${quantity}'
+                  description='${description}'
+                  imageURL='${imageURL}'
+                  class='btn btn-outline-primary btn-sm'
+                  onClick='editProduct(this)'>
+                    edit
+                </button>
+                <button 
+                  id='deleteBtn' 
+                  productID='${productID}' 
+                  class='btn btn-outline-danger btn-sm'
+                  onClick='deleteProduct(this)'>
+                    delete
+                </button>
+              </td>
+            </tr>
+          `)
+        });
+        resetForm();
+      }
+    })
   }
 
   function resetForm(){

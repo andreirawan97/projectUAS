@@ -23,6 +23,14 @@
       echo json_encode(array('status' => 'ok', 'datas' => $allProducts));
     }
 
+    public function getSearchedProducts(){
+      $searchKeyword = $this->input->post('searchKeyword');
+
+      $response = $this->HomeModel->getSearchedProducts($searchKeyword);
+      
+      echo json_encode(array('status' =>'ok', 'datas' => $response));
+    }
+
     public function addNewProduct(){
       $name = $this->input->post('name');
       $price = $this->input->post('price');

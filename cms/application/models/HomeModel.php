@@ -7,6 +7,12 @@
       return $query->result_array();
     }
 
+    function getSearchedProducts($searchKeyword){
+      $query = $this->db->query("SELECT * FROM products WHERE name LIKE '%$searchKeyword%' ORDER BY name");
+
+      return $query->result_array();
+    }
+
     function addNewProduct($name, $price, $quantity, $description, $imageURL){
       $this->db->query("INSERT INTO products VALUES (null, '$name', '$price', '$quantity', '$description', '$imageURL')");
       
