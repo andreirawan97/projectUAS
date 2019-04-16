@@ -218,7 +218,7 @@
   function renderSearchedProducts(searchKeyword){
     $.post('index.php/home/getSearchedProducts', {searchKeyword}, (res) => {
       let response = JSON.parse(res);
-      console.log(response);
+      
       let {status, datas} = response;
       if(status === 'ok'){
         $('#tbodyProducts').html('');
