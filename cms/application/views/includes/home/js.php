@@ -177,7 +177,6 @@
     }).then((result) => {
       if (result.value) {
         let productID = objBtn.getAttribute('productID');
-        console.log(productID);
 
         $.post('index.php/home/deleteProduct', {productID}, (res) => {
           let response = JSON.parse(res);
@@ -204,7 +203,6 @@
     let quantity = objBtn.getAttribute('quantity');
     let description = objBtn.getAttribute('description');
     let imageURL = objBtn.getAttribute('imageURL');
-    console.log(productID);
     
     $('#editTextProductID').val(productID);
     $('#editTextName').val(name);
