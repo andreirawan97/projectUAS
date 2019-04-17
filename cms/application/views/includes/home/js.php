@@ -42,6 +42,7 @@
               if (result.value) {
                 $('#addNewModal').modal('hide');
                 renderAllProducts();
+                resetAddNewForm();
               }
             })
 
@@ -160,7 +161,6 @@
             </tr>
           `)
         });
-        resetForm();
       }
     });
   }
@@ -222,6 +222,7 @@
       let {status, datas} = response;
       if(status === 'ok'){
         $('#tbodyProducts').html('');
+   
         datas.forEach((data, i) => {
           let {productID, name, price, quantity, description,imageURL} = data;
 
@@ -256,12 +257,11 @@
             </tr>
           `)
         });
-        resetForm();
       }
     })
   }
 
-  function resetForm(){
+  function resetAddNewForm(){
     $('#inputTextName').val('');
     $('#inputTextPrice').val('');
     $('#inputTextQuantity').val('');
