@@ -42,6 +42,7 @@
               if (result.value) {
                 $('#addNewModal').modal('hide');
                 renderAllProducts();
+                resetAddNewForm();
               }
             })
 
@@ -160,7 +161,6 @@
             </tr>
           `)
         });
-        resetForm();
       }
     });
   }
@@ -177,7 +177,6 @@
     }).then((result) => {
       if (result.value) {
         let productID = objBtn.getAttribute('productID');
-        console.log(productID);
 
         $.post('index.php/home/deleteProduct', {productID}, (res) => {
           let response = JSON.parse(res);
@@ -204,7 +203,6 @@
     let quantity = objBtn.getAttribute('quantity');
     let description = objBtn.getAttribute('description');
     let imageURL = objBtn.getAttribute('imageURL');
-    console.log(productID);
     
     $('#editTextProductID').val(productID);
     $('#editTextName').val(name);
@@ -222,6 +220,7 @@
       let {status, datas} = response;
       if(status === 'ok'){
         $('#tbodyProducts').html('');
+   
         datas.forEach((data, i) => {
           let {productID, name, price, quantity, description,imageURL} = data;
 
@@ -256,12 +255,11 @@
             </tr>
           `)
         });
-        resetForm();
       }
     })
   }
 
-  function resetForm(){
+  function resetAddNewForm(){
     $('#inputTextName').val('');
     $('#inputTextPrice').val('');
     $('#inputTextQuantity').val('');
