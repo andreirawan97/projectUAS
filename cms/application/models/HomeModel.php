@@ -2,7 +2,17 @@
   class HomeModel extends CI_Model{
     // Function to get all product
     function getAllProducts(){
-      $query = $this->db->query('SELECT * FROM products ORDER BY name');
+      $query = $this->db->query('SELECT products.productID,
+      products.name,
+      products.price,
+      products.quantity,
+      products.description,
+      products.imageURL,
+      heroes.heroesID, 
+      heroes.heroesName 
+      FROM products
+      LEFT JOIN heroes 
+      ON heroes.heroesID = products.heroesID');
 
       return $query->result_array();
     }
@@ -14,7 +24,18 @@
     }
 
     function getSearchedProducts($searchKeyword){
-      $query = $this->db->query("SELECT * FROM products WHERE name LIKE '%$searchKeyword%' ORDER BY name");
+      $query = $this->db->query("SELECT products.productID,
+      products.name,
+      products.price,
+      products.quantity,
+      products.description,
+      products.imageURL,
+      heroes.heroesID, 
+      heroes.heroesName 
+      FROM products
+      LEFT JOIN heroes 
+      ON heroes.heroesID = products.heroesID
+      WHERE products.name LIKE '%$searchKeyword%' ORDER BY products.name");
 
       return $query->result_array();
     }
@@ -31,12 +52,13 @@
       return true;
     }
 
-    function updateProduct($name, $price, $quantity, $description, $imageURL, $productID){
+    function updateProduct($name, $price, $quantity, $description, $imageURL, $productID, $heroID){
       $this->db->query("UPDATE products SET name = '$name',
        price = '$price',
        quantity = '$quantity', 
        description = '$description',
-       imageURL = '$imageURL'
+       imageURL = '$imageURL',
+       heroesID = '$heroID'
        WHERE productID = '$productID'");
       
       return true;

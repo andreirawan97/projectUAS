@@ -69,8 +69,9 @@
       $quantity = $this->input->post('quantity');
       $description = $this->input->post('description');
       $imageURL = $this->input->post('imageURL');
+      $heroID = $this->input->post('heroID');
 
-      $response = $this->HomeModel->updateProduct($name, $price, $quantity, $description, $imageURL,$productID);
+      $response = $this->HomeModel->updateProduct($name, $price, $quantity, $description, $imageURL,$productID,$heroID);
     
       if($response){
         echo json_encode(array('status' => 'ok', 'message' => 'The product has been successfully updated!'));

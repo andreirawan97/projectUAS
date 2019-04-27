@@ -83,47 +83,64 @@
       let quantity = $('#editTextQuantity').val().trim();
       let description = $('#editTextDescription').val().trim();
       let imageURL = $('#editTextImageURL').val().trim();
+      let heroName = $('#editHeroesName').val().trim();
+      let heroID = '';
 
-      if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
-        Swal.fire(
-          'Error!',
-          'Name, price, or quantity cannot be empty!',
-          'error'
-        )
-      }
-      else{
-        let data = {
-          productID,
-          name,
-          price,
-          quantity,
-          description,
-          imageURL
+      $.get('index.php/home/getAllHeroes', (res) => {
+        let response = JSON.parse(res);
+        let heroID = '';
+        let {status,datas} = response;
+        if(status === 'ok'){
+          datas.forEach((data) => {
+            let {heroesID, heroesName, heroesAttr, imageURL} = data;
+            if (heroName == heroesName){
+              heroID = heroesID;
+            }
+            if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+              Swal.fire(
+                'Error!',
+                'Name, price, or quantity cannot be empty!',
+                'error'
+              )
+            }
+            else{
+              let data = {
+                productID,
+                name,
+                price,
+                quantity,
+                description,
+                imageURL,
+                heroID
+              }
+
+
+              $.post('index.php/home/updateProduct', data, (res) => {
+                let response = JSON.parse(res);
+
+                let {status, message} = response;
+
+                if(status === 'ok'){
+                  Swal.fire(
+                    'Success!',
+                    message,
+                    'success'
+                  )
+                  $('#editModal').modal('hide');
+                  renderAllProducts();
+                }
+                else{
+                  Swal.fire(
+                    'Error!',
+                    message,
+                    'error'
+                  )
+                }
+              })
+            }
+          })
         }
-
-        $.post('index.php/home/updateProduct', data, (res) => {
-          let response = JSON.parse(res);
-
-          let {status, message} = response;
-
-          if(status === 'ok'){
-            Swal.fire(
-              'Success!',
-              message,
-              'success'
-            )
-            $('#editModal').modal('hide');
-            renderAllProducts();
-          }
-          else{
-            Swal.fire(
-              'Error!',
-              message,
-              'error'
-            )
-          }
-        })
-      }
+      })
     })
 
     $('#searchKeyword').keyup(() =>{
@@ -136,7 +153,7 @@
       }
     })
   })
-
+  
   function renderAllProducts(){
     $.get('index.php/home/getAllProducts', (res) => {
       let response = JSON.parse(res);
@@ -145,53 +162,41 @@
       if(status === 'ok'){
         $('#tbodyProducts').html('');
         datas.forEach((data, i) => {
-          let heroName = '';
-          let {productID, name, price, quantity, description,imageURL, heroesID} = data;
-          let heroID = heroesID;
-          $.get('index.php/home/getAllHeroes', (res) => {
-            let response = JSON.parse(res);
-            
-            let {status, datas} = response;
-            if(status === 'ok'){
-              datas.forEach((data) => {
-                let {heroesID,heroesName,heroesAttr,imageURL} = data;
-                if (heroID == heroesID){
-                  heroName = heroesName;
-                  $('#tbodyProducts').append(`
-                  <tr>
-                    <th scope='row'>${i+1}</th>
-                    <td>${name}</td>
-                    <td>${heroName}</td>
-                    <td>$${price}</td>
-                    <td>${quantity}</td>
-                    <td>${description !== '' ? description : `<i>No Description</i>`}</td>
-                    <td>
-                    <button 
-                        id='editBtn' 
-                        productID='${productID}'
-                        name='${name}'
-                        price='${price}'
-                        quantity='${quantity}'
-                        description='${description}'
-                        imageURL='${imageURL}'
-                        class='btn btn-outline-primary btn-sm'
-                        onClick='editProduct(this)'>
-                          edit
-                      </button>
-                      <button 
-                        id='deleteBtn' 
-                        productID='${productID}' 
-                        class='btn btn-outline-danger btn-sm'
-                        onClick='deleteProduct(this)'>
-                          delete
-                      </button>
-                    </td>
-                  </tr>
-                `)
-                }
-              })
-            }
-          })
+          let {productID, name, price, quantity, description,imageURL,heroesID,heroesName} = data;
+
+          $('#tbodyProducts').append(`
+            <tr>
+              <th scope='row'>${i+1}</th>
+              <td>${name}</td>
+              <td>${heroesName}</td>
+              <td>$${price}</td>
+              <td>${quantity}</td>
+              <td>${description !== '' ? description : `<i>No Description</i>`}</td>
+              <td>
+              <button 
+                  id='editBtn' 
+                  productID='${productID}'
+                  name='${name}'
+                  price='${price}'
+                  quantity='${quantity}'
+                  description='${description}'
+                  imageURL='${imageURL}'
+                  heroesName='${heroesName}'
+                  heroesID='${heroesID}'
+                  class='btn btn-outline-primary btn-sm'
+                  onClick='editProduct(this)'>
+                    edit
+                </button>
+                <button 
+                  id='deleteBtn' 
+                  productID='${productID}' 
+                  class='btn btn-outline-danger btn-sm'
+                  onClick='deleteProduct(this)'>
+                    delete
+                </button>
+              </td>
+            </tr>
+          `)
         });
       }
     });
@@ -255,8 +260,7 @@
     let description = objBtn.getAttribute('description');
     let imageURL = objBtn.getAttribute('imageURL');
     let heroesName = objBtn.getAttribute('heroesName');
-    
-    console.log(heroesName);
+    let heroesID = objBtn.getAttribute('heroesID');
 
     $('#editTextProductID').val(productID);
     $('#editTextName').val(name);
@@ -264,6 +268,7 @@
     $('#editTextQuantity').val(quantity);
     $('#editTextDescription').val(description);
     $('#editTextImageURL').val(imageURL);
+    $('#editHeroesName').val(heroesName);
     $('#editModal').modal('show');
   }
 
@@ -276,12 +281,13 @@
         $('#tbodyProducts').html('');
    
         datas.forEach((data, i) => {
-          let {productID, name, price, quantity, description,imageURL} = data;
+          let {productID, name, price, quantity, description,imageURL,heroesID,heroesName} = data;
 
           $('#tbodyProducts').append(`
             <tr>
               <th scope='row'>${i+1}</th>
               <td>${name}</td>
+              <td>${heroesName}</td>
               <td>$${price}</td>
               <td>${quantity}</td>
               <td>${description !== '' ? description : `<i>No Description</i>`}</td>
@@ -294,6 +300,8 @@
                   quantity='${quantity}'
                   description='${description}'
                   imageURL='${imageURL}'
+                  heroesName='${heroesName}'
+                  heroesID='${heroesID}'
                   class='btn btn-outline-primary btn-sm'
                   onClick='editProduct(this)'>
                     edit
