@@ -1,6 +1,7 @@
 <script>
   $(document).ready(() => {
     renderAllProducts();
+    renderOption();
 
     $('#submitBtn').click(() => {
       let name = $('#inputTextName').val().trim();
@@ -8,55 +9,71 @@
       let quantity = $('#inputTextQuantity').val().trim();
       let description = $('#inputTextDescription').val().trim();
       let imageURL = $('#inputTextImageURL').val().trim();
-      
-      if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
-        Swal.fire(
-          'Error!',
-          'Name, price, or quantity cannot be empty!',
-          'error'
-        )
-      }
-      else{
-        let data = {
-          name,
-          price,
-          quantity,
-          description,
-          imageURL
-        }
+      let heroName = $('#inputHeroesName').val().trim();
+      let heroID = '';
 
-        $.post('index.php/home/addNewProduct', data, (res) => {
-          let response = JSON.parse(res);
-
-          let {status, message} = response;
-
-          if(status === 'ok'){
-            Swal.fire({
-              title: 'Success!',
-              text: message,
-              type: 'success',
-              showCancelButton: false,
-              confirmButtonColor: '#3085d6',
-              confirmButtonText: 'Great!'
-            }).then((result) => {
-              if (result.value) {
-                $('#addNewModal').modal('hide');
-                renderAllProducts();
-                resetAddNewForm();
+      $.get('index.php/home/getAllHeroes', (res) => {
+        let response = JSON.parse(res);
+        
+        let {status, datas} = response;
+        if(status === 'ok'){
+          datas.forEach((data, i) => {
+            let {heroesID, heroesName, heroesAttr, imageURL} = data;
+            if (heroName == heroesName){
+              heroID = heroesID;
+              if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+                Swal.fire(
+                  'Error!',
+                  'Name, price, or quantity cannot be empty!',
+                  'error'
+                )
               }
-            })
+              else{
+                let data = {
+                  name,
+                  price,
+                  quantity,
+                  description,
+                  imageURL,
+                  heroID
+                }
 
-          }
-          else{
-            Swal.fire(
-              'Error!',
-              message,
-              'error'
-            )
-          }
+                $.post('index.php/home/addNewProduct', data, (res) => {
+                  let response = JSON.parse(res);
 
-        })
-      }
+                  let {status, message} = response;
+
+                  if(status === 'ok'){
+                    Swal.fire({
+                      title: 'Success!',
+                      text: message,
+                      type: 'success',
+                      showCancelButton: false,
+                      confirmButtonColor: '#3085d6',
+                      confirmButtonText: 'Great!'
+                    }).then((result) => {
+                      if (result.value) {
+                        $('#addNewModal').modal('hide');
+                        renderAllProducts();
+                        resetAddNewForm();
+                      }
+                    })
+
+                  }
+                  else{
+                    Swal.fire(
+                      'Error!',
+                      message,
+                      'error'
+                    )
+                  }
+
+                })
+              }
+            }
+          });
+        }
+      });
     })
 
     $('#updateBtn').click(() => {
@@ -128,37 +145,71 @@
       if(status === 'ok'){
         $('#tbodyProducts').html('');
         datas.forEach((data, i) => {
-          let {productID, name, price, quantity, description,imageURL} = data;
+          let heroName = '';
+          let {productID, name, price, quantity, description,imageURL, heroesID} = data;
+          let heroID = heroesID;
+          $.get('index.php/home/getAllHeroes', (res) => {
+            let response = JSON.parse(res);
+            
+            let {status, datas} = response;
+            if(status === 'ok'){
+              datas.forEach((data) => {
+                let {heroesID,heroesName,heroesAttr,imageURL} = data;
+                if (heroID == heroesID){
+                  heroName = heroesName;
+                  $('#tbodyProducts').append(`
+                  <tr>
+                    <th scope='row'>${i+1}</th>
+                    <td>${name}</td>
+                    <td>${heroName}</td>
+                    <td>$${price}</td>
+                    <td>${quantity}</td>
+                    <td>${description !== '' ? description : `<i>No Description</i>`}</td>
+                    <td>
+                    <button 
+                        id='editBtn' 
+                        productID='${productID}'
+                        name='${name}'
+                        price='${price}'
+                        quantity='${quantity}'
+                        description='${description}'
+                        imageURL='${imageURL}'
+                        class='btn btn-outline-primary btn-sm'
+                        onClick='editProduct(this)'>
+                          edit
+                      </button>
+                      <button 
+                        id='deleteBtn' 
+                        productID='${productID}' 
+                        class='btn btn-outline-danger btn-sm'
+                        onClick='deleteProduct(this)'>
+                          delete
+                      </button>
+                    </td>
+                  </tr>
+                `)
+                }
+              })
+            }
+          })
+        });
+      }
+    });
+  }
 
-          $('#tbodyProducts').append(`
-            <tr>
-              <th scope='row'>${i+1}</th>
-              <td>${name}</td>
-              <td>$${price}</td>
-              <td>${quantity}</td>
-              <td>${description !== '' ? description : `<i>No Description</i>`}</td>
-              <td>
-              <button 
-                  id='editBtn' 
-                  productID='${productID}'
-                  name='${name}'
-                  price='${price}'
-                  quantity='${quantity}'
-                  description='${description}'
-                  imageURL='${imageURL}'
-                  class='btn btn-outline-primary btn-sm'
-                  onClick='editProduct(this)'>
-                    edit
-                </button>
-                <button 
-                  id='deleteBtn' 
-                  productID='${productID}' 
-                  class='btn btn-outline-danger btn-sm'
-                  onClick='deleteProduct(this)'>
-                    delete
-                </button>
-              </td>
-            </tr>
+  function renderOption(){
+    $.get('index.php/home/getAllHeroes', (res) => {
+      let response = JSON.parse(res);
+      
+      let {status, datas} = response;
+      if(status === 'ok'){
+        datas.forEach((data, i) => {
+          let {heroesID, heroesName, heroesAttr, imageURL} = data;
+          $('#inputHeroesName').append(`
+            <option>${heroesName}</option>
+          `)
+          $('#editHeroesName').append(`
+            <option>${heroesName}</option>
           `)
         });
       }
@@ -203,7 +254,10 @@
     let quantity = objBtn.getAttribute('quantity');
     let description = objBtn.getAttribute('description');
     let imageURL = objBtn.getAttribute('imageURL');
+    let heroesName = objBtn.getAttribute('heroesName');
     
+    console.log(heroesName);
+
     $('#editTextProductID').val(productID);
     $('#editTextName').val(name);
     $('#editTextPrice').val(price);

@@ -22,6 +22,7 @@
       <thead>
         <th scope="col">#</th>
         <th scope="col">Product Name</th>
+        <th scope="col">Heroes</th>
         <th scope="col">Price</th>
         <th scope="col">Quantity</th>
         <th scope="col">Description</th>
@@ -49,6 +50,12 @@
             <div class="form-group">
               <label for="inputTextName">Name <a style="color: tomato">*</a></label>
               <input type="text" class="form-control" id="inputTextName" placeholder="Enter product name...">
+            </div>
+            <div class="form-group">
+              <label for="inputHeroesName">Heroes  <a style="color: tomato">*</a></label>
+              <select class="form-control" id="inputHeroesName">
+                <!-- To Be Added -->
+              </select>
             </div>
             <div class="form-group">
               <label for="inputTextPrice">Price <a style="color: tomato">*</a></label>
@@ -92,6 +99,12 @@
             <div class="form-group">
               <label for="editTextName">Name <a style="color: tomato">*</a></label>
               <input type="text" class="form-control" id="editTextName" placeholder="Enter product name...">
+            </div>
+            <div class="form-group">
+              <label for="editHeroesName">Heroes  <a style="color: tomato">*</a></label>
+              <select class="form-control" id="editHeroesName">
+                <!-- To Be Added -->
+              </select>
             </div>
             <div class="form-group">
               <label for="editTextPrice">Price <a style="color: tomato">*</a></label>
