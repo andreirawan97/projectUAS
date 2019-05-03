@@ -1,2 +1,4 @@
 client/user_guide/
 cms/user_guide/
+client/application/config/config.php
+cms/application/config/config.php

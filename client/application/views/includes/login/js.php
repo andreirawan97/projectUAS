@@ -1,5 +1,18 @@
 <script>
   $(document).ready(() => {
+    // Check if exist or not
+    if(!checkLocalStorage()){
+      initializeLocalStorage();
+    }
+    else{
+      // Check login status;
+      let {isLogin, userData} = getLocalStorage();
+
+      if(isLogin){
+        location.href = 'index.php/login/goToHome';
+      }
+    }
+
     $('#loginForm').on('submit', (e) => {
       e.preventDefault();
 
@@ -18,6 +31,16 @@
           let {status, message} = response;
           if(status === 'ok'){
             Swal.fire('Success!', message, 'success');
+          
+            let newLocalStorage = {
+              isLogin: true,
+              userData: {
+                userID,
+              }
+            }
+            setLocalStorage(newLocalStorage);
+
+            location.href = 'index.php/login/goToHome';
           }
           else{
             Swal.fire('Error!', message, 'error');
