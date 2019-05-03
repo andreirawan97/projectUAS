@@ -9,6 +9,8 @@ class Login extends CI_Controller {
 
 	public function index(){
     $data['library'] = $this->load->view('includes/general/library.php', NULL, TRUE);
+    $data['localStorageHelper'] = $this->load->view('includes/general/localStorageHelper.php', NULL, TRUE);
+    
     $data['js'] = $this->load->view('includes/login/js.php', NULL, TRUE);
     $data['css'] = $this->load->view('includes/login/css.php', NULL, TRUE);
     $this->load->view('pages/login.php', $data);
@@ -26,4 +28,10 @@ class Login extends CI_Controller {
   public function goToSignup(){
     redirect('signup');
   }
+
+  public function goToHome(){
+    redirect('home');
+  }
 }
+
+?>
