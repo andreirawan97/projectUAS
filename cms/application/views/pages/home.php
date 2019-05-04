@@ -52,8 +52,8 @@
               <input type="text" class="form-control" id="inputTextName" placeholder="Enter product name...">
             </div>
             <div class="form-group">
-              <label for="inputHeroesName">Heroes  <a style="color: tomato">*</a></label>
-              <select class="form-control" id="inputHeroesName">
+              <label for="inputHeroesName">Hero  <a style="color: tomato">*</a></label>
+              <select class="form-control" id="inputHeroName">
                 <!-- To Be Added -->
               </select>
             </div>
@@ -99,14 +99,15 @@
         <div class="modal-body">
           <form id="newProductForm">
             <input type="hidden" id="editTextProductID" />
-            <input type="hidden" id="editTextLink"/>
+            <input type="hidden" id="editHeroesID" />
+            <input type="hidden" id="editImageLink" />
             <div class="form-group">
               <label for="editTextName">Name <a style="color: tomato">*</a></label>
               <input type="text" class="form-control" id="editTextName" placeholder="Enter product name...">
             </div>
             <div class="form-group">
               <label for="editHeroesName">Heroes  <a style="color: tomato">*</a></label>
-              <select class="form-control" id="editHeroesName">
+              <select class="form-control" id="editHeroName">
                 <!-- To Be Added -->
               </select>
             </div>

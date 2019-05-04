@@ -23,10 +23,10 @@
       echo json_encode(array('status' => 'ok', 'datas' => $allProducts));
     }
 
-    public function getAllHeroes(){
-      $allHeroes = $this->HomeModel->getAllHeroes();
+    public function getIdHeroes(){
+      $idHeroes = $this->HomeModel->getIdHeroes();
 
-      echo json_encode(array('status' => 'ok', 'datas' => $allHeroes));
+      echo json_encode(array('status' => 'ok', 'datas' => $idHeroes));
     }
 
     public function getSearchedProducts(){
@@ -42,10 +42,10 @@
       $price = $this->input->post('price');
       $quantity = $this->input->post('quantity');
       $description = $this->input->post('description');
-      $link = $this->input->post('link');
-      $heroesID = $this->input->post('heroID');
+      $imageURL = $this->input->post('imageURL');
+      $heroID = $this->input->post('heroID');
 
-      $response = $this->HomeModel->addNewProduct($name, $price, $quantity, $description, $link, $heroesID);
+      $response = $this->HomeModel->addNewProduct($name, $price, $quantity, $description, $imageURL, $heroID);
     
       if($response){
         echo json_encode(array('status' => 'ok', 'message' => 'The product has been successfully added!'));
@@ -68,11 +68,10 @@
       $price = $this->input->post('price');
       $quantity = $this->input->post('quantity');
       $description = $this->input->post('description');
-      $link = $this->input->post('link');
-      $heroID = $this->input->post('heroID');
+      $imageURL = $this->input->post('imageURL');
+      $heroesID = $this->input->post('heroesID');
 
-      $response = $this->HomeModel->updateProduct($name, $price, $quantity, $description, $link,$productID, $heroID);
-    
+      $response = $this->HomeModel->updateProduct($name, $price, $quantity, $description, $imageURL,$productID, $heroesID);
       if($response){
         echo json_encode(array('status' => 'ok', 'message' => 'The product has been successfully updated!'));
       }
