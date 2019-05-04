@@ -42,10 +42,17 @@
       $price = $this->input->post('price');
       $quantity = $this->input->post('quantity');
       $description = $this->input->post('description');
+<<<<<<< HEAD
       $imageURL = $this->input->post('imageURL');
       $heroID = $this->input->post('heroID');
 
       $response = $this->HomeModel->addNewProduct($name, $price, $quantity, $description, $imageURL, $heroID);
+=======
+      $link = $this->input->post('link');
+      $heroesID = $this->input->post('heroID');
+
+      $response = $this->HomeModel->addNewProduct($name, $price, $quantity, $description, $link, $heroesID);
+>>>>>>> fixing search feature, adding upload image feature
     
       if($response){
         echo json_encode(array('status' => 'ok', 'message' => 'The product has been successfully added!'));
@@ -68,10 +75,18 @@
       $price = $this->input->post('price');
       $quantity = $this->input->post('quantity');
       $description = $this->input->post('description');
+<<<<<<< HEAD
       $imageURL = $this->input->post('imageURL');
       $heroesID = $this->input->post('heroesID');
 
       $response = $this->HomeModel->updateProduct($name, $price, $quantity, $description, $imageURL,$productID, $heroesID);
+=======
+      $link = $this->input->post('link');
+      $heroID = $this->input->post('heroID');
+
+      $response = $this->HomeModel->updateProduct($name, $price, $quantity, $description, $link,$productID, $heroID);
+    
+>>>>>>> fixing search feature, adding upload image feature
       if($response){
         echo json_encode(array('status' => 'ok', 'message' => 'The product has been successfully updated!'));
       }

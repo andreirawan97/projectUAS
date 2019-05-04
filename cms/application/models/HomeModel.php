@@ -40,8 +40,13 @@
       return $query->result_array();
     }
 
+<<<<<<< HEAD
     function addNewProduct($name, $price, $quantity, $description, $imageURL, $heroID){
       $this->db->query("INSERT INTO products VALUES (null, '$name', '$price', '$quantity', '$description', '$imageURL', '$heroID')");
+=======
+    function addNewProduct($name, $price, $quantity, $description, $link, $heroesID){
+      $this->db->query("INSERT INTO products VALUES (null, '$name', '$price', '$quantity', '$description', '$link', '$heroesID')");
+>>>>>>> fixing search feature, adding upload image feature
       
       return true;
     }
@@ -52,13 +57,22 @@
       return true;
     }
 
+<<<<<<< HEAD
     function updateProduct($name, $price, $quantity, $description, $imageURL, $productID, $heroesID){
+=======
+    function updateProduct($name, $price, $quantity, $description, $link, $productID, $heroID){
+>>>>>>> fixing search feature, adding upload image feature
       $this->db->query("UPDATE products SET name = '$name',
        price = '$price',
        quantity = '$quantity', 
        description = '$description',
+<<<<<<< HEAD
        imageURL = '$imageURL',
        heroesID = '$heroesID'
+=======
+       imageURL = '$link',
+       heroesID = '$heroID'
+>>>>>>> fixing search feature, adding upload image feature
        WHERE productID = '$productID'");
       
       return true;

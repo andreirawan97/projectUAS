@@ -9,8 +9,13 @@
       let quantity = $('#inputTextQuantity').val().trim();
       let description = $('#inputTextDescription').val().trim();
       let file = $('#inputTextImageURL').get(0).files;
+<<<<<<< HEAD
       let heroName = $('#inputHeroName').val().trim();
       let heroID = $('#inputHeroName option:selected').data('status');
+=======
+      let heroName = $('#inputHeroesName').val().trim();
+      let heroID = '';
+>>>>>>> fixing search feature, adding upload image feature
 
       let url = 'https://api.imgur.com/3/image';
       let clientID = '93978d38370b0b5';
@@ -27,6 +32,7 @@
           contentType: false,
           data: file[0],
       };
+<<<<<<< HEAD
       
       //insert database w/image
       if (file.length == 1){
@@ -139,6 +145,144 @@
             }
           })
         }
+=======
+
+      //insert database w/image
+      if (file.length == 1){
+        $.ajax(settings).done(function(res) {
+            //If the request is complete, the response will be the URL of uploaded image
+            let response = JSON.parse(res);
+
+            let {data} = response;
+            let {link} = data;
+            let imageURL = link;
+            
+            $.get('index.php/home/getAllHeroes', (res) => {
+            let response = JSON.parse(res);
+            
+            let {status, datas} = response;
+            if(status === 'ok'){
+              datas.forEach((data, i) => {
+                let {heroesID, heroesName, heroesAttr, imageURL} = data;
+                if (heroName == heroesName){
+                  heroID = heroesID;
+                  if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+                    Swal.fire(
+                      'Error!',
+                      'Name, price, or quantity cannot be empty!',
+                      'error'
+                    )
+                  }
+                  else{
+                    let data = {
+                      name,
+                      price,
+                      quantity,
+                      description,
+                      link,
+                      heroID
+                    }
+
+                    $.post('index.php/home/addNewProduct', data, (res) => {
+                      let response = JSON.parse(res);
+
+                      let {status, message} = response;
+
+                      if(status === 'ok'){
+                        Swal.fire({
+                          title: 'Success!',
+                          text: message,
+                          type: 'success',
+                          showCancelButton: false,
+                          confirmButtonColor: '#3085d6',
+                          confirmButtonText: 'Great!'
+                        }).then((result) => {
+                          if (result.value) {
+                            $('#addNewModal').modal('hide');
+                            renderAllProducts();
+                            resetAddNewForm();
+                          }
+                        })
+
+                      }
+                      else{
+                        Swal.fire(
+                          'Error!',
+                          message,
+                          'error'
+                        )
+                      }
+                    })
+                  }
+                }
+              });
+            }
+          });
+        });
+      }else{ //insert database wo/ image
+        $.get('index.php/home/getAllHeroes', (res) => {
+          let response = JSON.parse(res);
+          
+          let {status, datas} = response;
+          let link = '';
+          if(status === 'ok'){
+            datas.forEach((data, i) => {
+              let {heroesID, heroesName, heroesAttr, imageURL} = data;
+              if (heroName == heroesName){
+                heroID = heroesID;
+                if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+                  Swal.fire(
+                    'Error!',
+                    'Name, price, or quantity cannot be empty!',
+                    'error'
+                  )
+                }
+                else{
+                  let data = {
+                    name,
+                    price,
+                    quantity,
+                    description,
+                    link,
+                    heroID
+                  }
+
+                  $.post('index.php/home/addNewProduct', data, (res) => {
+                    let response = JSON.parse(res);
+
+                    let {status, message} = response;
+
+                    if(status === 'ok'){
+                      Swal.fire({
+                        title: 'Success!',
+                        text: message,
+                        type: 'success',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Great!'
+                      }).then((result) => {
+                        if (result.value) {
+                          $('#addNewModal').modal('hide');
+                          renderAllProducts();
+                          resetAddNewForm();
+                        }
+                      })
+
+                    }
+                    else{
+                      Swal.fire(
+                        'Error!',
+                        message,
+                        'error'
+                      )
+                    }
+                  })
+                }
+              }
+            });
+          }
+        });
+>>>>>>> fixing search feature, adding upload image feature
       }
     })
 
@@ -148,10 +292,19 @@
       let price = $('#editTextPrice').val().trim();
       let quantity = $('#editTextQuantity').val().trim();
       let description = $('#editTextDescription').val().trim();
+<<<<<<< HEAD
       let heroesName = $('#editHeroName').val().trim();
       let heroesID = $('#editHeroesID').val().trim();
       let imageURL = $('#editImageLink').val().trim();
       let file = $('#editTextImageURL').get(0).files;
+=======
+      let file = $('#editTextImageURL').get(0).files;
+      let heroName = $('#editHeroesName').val().trim();
+      let imageURL = $('#editTextImageURL').val().trim();
+      let link = $('#editTextLink').val().trim();
+      let heroID = '';
+
+>>>>>>> fixing search feature, adding upload image feature
       
       let url = 'https://api.imgur.com/3/image';
       let clientID = '93978d38370b0b5';
@@ -170,6 +323,7 @@
       };
 
       if(file.length == 1){
+<<<<<<< HEAD
         $('#loadingEdit').attr('class', 'loading d-flex align-items-center');
         $.ajax(settings).done(function(res) {
           //If the request is complete, the response will be the URL of uploaded image
@@ -264,6 +418,123 @@
             }
           })
         }
+=======
+        $.ajax(settings).done(function(res) {
+            //If the request is complete, the response will be the URL of uploaded image
+            let response = JSON.parse(res);
+
+            let {data} = response;
+            let {link} = data;
+            
+            $.get('index.php/home/getAllHeroes', (res) => {
+            let response = JSON.parse(res);
+            
+            let {status, datas} = response;
+            if(status === 'ok'){
+              datas.forEach((data, i) => {
+                let {heroesID, heroesName, heroesAttr, imageURL} = data;
+                if (heroName == heroesName){
+                  heroID = heroesID;
+                  if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+                    Swal.fire(
+                      'Error!',
+                      'Name, price, or quantity cannot be empty!',
+                      'error'
+                    )
+                  }
+                  else{
+                    let data = {
+                      name,
+                      price,
+                      quantity,
+                      description,
+                      link,
+                      productID,
+                      heroID
+                    }
+
+                    $.post('index.php/home/updateProduct', data, (res) => {
+                      let response = JSON.parse(res);
+
+                      let {status, message} = response;
+
+                      if(status === 'ok') {
+                        Swal.fire(
+                          'Success!',
+                          message,
+                          'success'
+                        )
+                        $('#editModal').modal('hide');
+                        renderAllProducts();
+                      }else {
+                        Swal.fire(
+                          'Error!',
+                          message,
+                          'error'
+                        )
+                      }
+                    })
+                  }
+                }
+              });
+            }
+          });
+        });
+      }else{
+        $.get('index.php/home/getAllHeroes', (res) => {
+          let response = JSON.parse(res);
+          
+          let {status, datas} = response;
+          if(status === 'ok'){
+            datas.forEach((data, i) => {
+              let {heroesID, heroesName, heroesAttr, imageURL} = data;
+              if (heroName == heroesName){
+                heroID = heroesID;
+                if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+                  Swal.fire(
+                    'Error!',
+                    'Name, price, or quantity cannot be empty!',
+                    'error'
+                  )
+                }
+                else{
+                  let data = {
+                    name,
+                    price,
+                    quantity,
+                    description,
+                    link,
+                    productID,
+                    heroID
+                  }
+
+                  $.post('index.php/home/updateProduct', data, (res) => {
+                    let response = JSON.parse(res);
+
+                    let {status, message} = response;
+
+                    if(status === 'ok') {
+                      Swal.fire(
+                        'Success!',
+                        message,
+                        'success'
+                      )
+                      $('#editModal').modal('hide');
+                      renderAllProducts();
+                    }else {
+                      Swal.fire(
+                        'Error!',
+                        message,
+                        'error'
+                      )
+                    }
+                  })
+                }
+              }
+            });
+          }
+        });
+>>>>>>> fixing search feature, adding upload image feature
       }
     })
 
@@ -286,6 +557,7 @@
       if(status === 'ok'){
         $('#tbodyProducts').html('');
         datas.forEach((data, i) => {
+<<<<<<< HEAD
           let {productID, name, price, quantity, description,imageURL, heroesID, heroesName} = data;
             $('#tbodyProducts').append(`
             <tr>
@@ -320,6 +592,58 @@
               </td>
             </tr>
           `)
+=======
+          let heroName = '';
+          let {productID, name, price, quantity, description,imageURL, heroesID} = data;
+          let heroID = heroesID;
+          let link = imageURL;
+          $.get('index.php/home/getAllHeroes', (res) => {
+            let response = JSON.parse(res);
+            
+            let {status, datas} = response;
+            if(status === 'ok'){
+              datas.forEach((data) => {
+                let {heroesID,heroesName,heroesAttr,imageURL} = data;
+                if (heroID == heroesID){
+                  heroName = heroesName;
+                  $('#tbodyProducts').append(`
+                  <tr>
+                    <th scope='row'>${i+1}</th>
+                    <td>${name}</td>
+                    <td>${heroName}</td>
+                    <td>$${price}</td>
+                    <td>${quantity}</td>
+                    <td>${description !== '' ? description : `<i>No Description</i>`}</td>
+                    <td>
+                    <button 
+                        id='editBtn' 
+                        productID='${productID}'
+                        name='${name}'
+                        price='${price}'
+                        quantity='${quantity}'
+                        description='${description}'
+                        link='${link}'
+                        heroName='${heroName}'
+                        heroID='${heroID}'
+                        class='btn btn-outline-primary btn-sm'
+                        onClick='editProduct(this)'>
+                          edit
+                      </button>
+                      <button 
+                        id='deleteBtn' 
+                        productID='${productID}' 
+                        class='btn btn-outline-danger btn-sm'
+                        onClick='deleteProduct(this)'>
+                          delete
+                      </button>
+                    </td>
+                  </tr>
+                `)
+                }
+              })
+            }
+          })
+>>>>>>> fixing search feature, adding upload image feature
         });
       }
     });
@@ -380,19 +704,33 @@
     let price = objBtn.getAttribute('price');
     let quantity = objBtn.getAttribute('quantity');
     let description = objBtn.getAttribute('description');
+<<<<<<< HEAD
     let imageURL = objBtn.getAttribute('imageURL');
     let heroesName = objBtn.getAttribute('heroesName');
     let heroesID = objBtn.getAttribute('heroesID');
     
     $('#editImageLink').val(imageURL);
+=======
+    let link = objBtn.getAttribute('link');
+    let heroName = objBtn.getAttribute('heroName');
+    let heroID = objBtn.getAttribute('heroID');
+
+    $('#editTextLink').val(link);
+>>>>>>> fixing search feature, adding upload image feature
     $('#editTextProductID').val(productID);
     $('#editHeroesID').val(heroesID);
     $('#editTextName').val(name);
     $('#editTextPrice').val(price);
     $('#editTextQuantity').val(quantity);
     $('#editTextDescription').val(description);
+<<<<<<< HEAD
     $('#editHeroName').val(heroesName);
     $('#editPhotos').attr('src', imageURL);
+=======
+    $('#editHeroesName').val(heroName);
+    //$('#editPhotos').html(`<image src="${link}" class="img-thumbnail"/>`);
+    $('#editPhotos').attr('src', link);
+>>>>>>> fixing search feature, adding upload image feature
     $('#editModal').modal('show');
   }
 
@@ -404,6 +742,7 @@
       if(status === 'ok'){
         $('#tbodyProducts').html('');
         datas.forEach((data, i) => {
+<<<<<<< HEAD
           let {productID, name, price, quantity, description,imageURL, heroesID, heroesName} = data;
             $('#tbodyProducts').append(`
             <tr>
@@ -438,6 +777,58 @@
               </td>
             </tr>
           `)
+=======
+          let heroName = '';
+          let {productID, name, price, quantity, description,imageURL, heroesID} = data;
+          let heroID = heroesID;
+          let link = imageURL;
+          $.get('index.php/home/getAllHeroes', (res) => {
+            let response = JSON.parse(res);
+            
+            let {status, datas} = response;
+            if(status === 'ok'){
+              datas.forEach((data) => {
+                let {heroesID,heroesName,heroesAttr,imageURL} = data;
+                if (heroID == heroesID){
+                  heroName = heroesName;
+                  $('#tbodyProducts').append(`
+                  <tr>
+                    <th scope='row'>${i+1}</th>
+                    <td>${name}</td>
+                    <td>${heroName}</td>
+                    <td>$${price}</td>
+                    <td>${quantity}</td>
+                    <td>${description !== '' ? description : `<i>No Description</i>`}</td>
+                    <td>
+                    <button 
+                        id='editBtn' 
+                        productID='${productID}'
+                        name='${name}'
+                        price='${price}'
+                        quantity='${quantity}'
+                        description='${description}'
+                        link='${link}'
+                        heroName='${heroName}'
+                        heroID='${heroID}'
+                        class='btn btn-outline-primary btn-sm'
+                        onClick='editProduct(this)'>
+                          edit
+                      </button>
+                      <button 
+                        id='deleteBtn' 
+                        productID='${productID}' 
+                        class='btn btn-outline-danger btn-sm'
+                        onClick='deleteProduct(this)'>
+                          delete
+                      </button>
+                    </td>
+                  </tr>
+                `)
+                }
+              })
+            }
+          })
+>>>>>>> fixing search feature, adding upload image feature
         });
       }
     })
@@ -462,8 +853,14 @@
   function viewBeforeInsertForAdd(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
+<<<<<<< HEAD
         reader.onload = function (e) {
           $('#addPhotos').html(`<img src="${e.target.result}" alt="your image" class="img-thumbnail"/>`);
+=======
+
+        reader.onload = function (e) {
+            $('#addPhotos').attr('src', e.target.result);
+>>>>>>> fixing search feature, adding upload image feature
         }
         reader.readAsDataURL(input.files[0]);
     }
@@ -474,7 +871,11 @@
         var reader = new FileReader();
 
         reader.onload = function (e) {
+<<<<<<< HEAD
           $('#editPhotos').attr('src', e.target.result);
+=======
+            $('#editPhotos').attr('src', e.target.result);
+>>>>>>> fixing search feature, adding upload image feature
         }
         reader.readAsDataURL(input.files[0]);
     }
