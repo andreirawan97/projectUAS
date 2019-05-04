@@ -19,8 +19,8 @@
       return $query->result_array();
     }
 
-    function addNewProduct($name, $price, $quantity, $description, $imageURL, $heroesID){
-      $this->db->query("INSERT INTO products VALUES (null, '$name', '$price', '$quantity', '$description', '$imageURL', '$heroesID')");
+    function addNewProduct($name, $price, $quantity, $description, $link, $heroesID){
+      $this->db->query("INSERT INTO products VALUES (null, '$name', '$price', '$quantity', '$description', '$link', '$heroesID')");
       
       return true;
     }
@@ -31,12 +31,13 @@
       return true;
     }
 
-    function updateProduct($name, $price, $quantity, $description, $imageURL, $productID){
+    function updateProduct($name, $price, $quantity, $description, $link, $productID, $heroID){
       $this->db->query("UPDATE products SET name = '$name',
        price = '$price',
        quantity = '$quantity', 
        description = '$description',
-       imageURL = '$imageURL'
+       imageURL = '$link',
+       heroesID = '$heroID'
        WHERE productID = '$productID'");
       
       return true;

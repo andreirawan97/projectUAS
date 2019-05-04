@@ -71,7 +71,10 @@
             </div>
             <div class="form-group">
               <label for="inputTextImageURL">Image URL</label>
-              <input type="text" class="form-control" id="inputTextImageURL" placeholder="Enter product image url...">
+              <input type="file" class="form-control" id="inputTextImageURL" accept="image/*" onchange="viewBeforeInsertForAdd(this);">
+            </div>
+            <div class="form-group">
+              <img id="addPhotos" src="#" alt="your image" class="img-thumbnail"/>
             </div>
           </form>
         </div>
@@ -96,6 +99,7 @@
         <div class="modal-body">
           <form id="newProductForm">
             <input type="hidden" id="editTextProductID" />
+            <input type="hidden" id="editTextLink"/>
             <div class="form-group">
               <label for="editTextName">Name <a style="color: tomato">*</a></label>
               <input type="text" class="form-control" id="editTextName" placeholder="Enter product name...">
@@ -120,7 +124,10 @@
             </div>
             <div class="form-group">
               <label for="editTextImageURL">Image URL</label>
-              <input type="text" class="form-control" id="editTextImageURL" placeholder="Enter product image url...">
+              <input type="file" class="form-control" id="editTextImageURL" accept="image/*" onchange="viewBeforeInsertForEdit(this);">
+            </div>
+            <div class="form-group">
+              <img id="editPhotos" src="#" alt="your image" class="img-thumbnail"/>
             </div>
           </form>
         </div>

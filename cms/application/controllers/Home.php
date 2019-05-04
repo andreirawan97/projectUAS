@@ -42,10 +42,10 @@
       $price = $this->input->post('price');
       $quantity = $this->input->post('quantity');
       $description = $this->input->post('description');
-      $imageURL = $this->input->post('imageURL');
+      $link = $this->input->post('link');
       $heroesID = $this->input->post('heroID');
 
-      $response = $this->HomeModel->addNewProduct($name, $price, $quantity, $description, $imageURL, $heroesID);
+      $response = $this->HomeModel->addNewProduct($name, $price, $quantity, $description, $link, $heroesID);
     
       if($response){
         echo json_encode(array('status' => 'ok', 'message' => 'The product has been successfully added!'));
@@ -68,9 +68,10 @@
       $price = $this->input->post('price');
       $quantity = $this->input->post('quantity');
       $description = $this->input->post('description');
-      $imageURL = $this->input->post('imageURL');
+      $link = $this->input->post('link');
+      $heroID = $this->input->post('heroID');
 
-      $response = $this->HomeModel->updateProduct($name, $price, $quantity, $description, $imageURL,$productID);
+      $response = $this->HomeModel->updateProduct($name, $price, $quantity, $description, $link,$productID, $heroID);
     
       if($response){
         echo json_encode(array('status' => 'ok', 'message' => 'The product has been successfully updated!'));
