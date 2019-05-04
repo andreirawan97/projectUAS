@@ -41,12 +41,17 @@
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     function addNewProduct($name, $price, $quantity, $description, $imageURL, $heroID){
       $this->db->query("INSERT INTO products VALUES (null, '$name', '$price', '$quantity', '$description', '$imageURL', '$heroID')");
 =======
     function addNewProduct($name, $price, $quantity, $description, $link, $heroesID){
       $this->db->query("INSERT INTO products VALUES (null, '$name', '$price', '$quantity', '$description', '$link', '$heroesID')");
 >>>>>>> fixing search feature, adding upload image feature
+=======
+    function addNewProduct($name, $price, $quantity, $description, $imageURL, $heroID){
+      $this->db->query("INSERT INTO products VALUES (null, '$name', '$price', '$quantity', '$description', '$imageURL', '$heroID')");
+>>>>>>> fixing confused code
       
       return true;
     }
@@ -58,14 +63,19 @@
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     function updateProduct($name, $price, $quantity, $description, $imageURL, $productID, $heroesID){
 =======
     function updateProduct($name, $price, $quantity, $description, $link, $productID, $heroID){
 >>>>>>> fixing search feature, adding upload image feature
+=======
+    function updateProduct($name, $price, $quantity, $description, $imageURL, $productID, $heroesID){
+>>>>>>> fixing confused code
       $this->db->query("UPDATE products SET name = '$name',
        price = '$price',
        quantity = '$quantity', 
        description = '$description',
+<<<<<<< HEAD
 <<<<<<< HEAD
        imageURL = '$imageURL',
        heroesID = '$heroesID'
@@ -73,6 +83,10 @@
        imageURL = '$link',
        heroesID = '$heroID'
 >>>>>>> fixing search feature, adding upload image feature
+=======
+       imageURL = '$imageURL',
+       heroesID = '$heroesID'
+>>>>>>> fixing confused code
        WHERE productID = '$productID'");
       
       return true;

@@ -43,6 +43,7 @@
       $quantity = $this->input->post('quantity');
       $description = $this->input->post('description');
 <<<<<<< HEAD
+<<<<<<< HEAD
       $imageURL = $this->input->post('imageURL');
       $heroID = $this->input->post('heroID');
 
@@ -53,6 +54,12 @@
 
       $response = $this->HomeModel->addNewProduct($name, $price, $quantity, $description, $link, $heroesID);
 >>>>>>> fixing search feature, adding upload image feature
+=======
+      $imageURL = $this->input->post('imageURL');
+      $heroID = $this->input->post('heroID');
+
+      $response = $this->HomeModel->addNewProduct($name, $price, $quantity, $description, $imageURL, $heroID);
+>>>>>>> fixing confused code
     
       if($response){
         echo json_encode(array('status' => 'ok', 'message' => 'The product has been successfully added!'));
@@ -76,6 +83,7 @@
       $quantity = $this->input->post('quantity');
       $description = $this->input->post('description');
 <<<<<<< HEAD
+<<<<<<< HEAD
       $imageURL = $this->input->post('imageURL');
       $heroesID = $this->input->post('heroesID');
 
@@ -87,6 +95,12 @@
       $response = $this->HomeModel->updateProduct($name, $price, $quantity, $description, $link,$productID, $heroID);
     
 >>>>>>> fixing search feature, adding upload image feature
+=======
+      $imageURL = $this->input->post('imageURL');
+      $heroesID = $this->input->post('heroesID');
+
+      $response = $this->HomeModel->updateProduct($name, $price, $quantity, $description, $imageURL,$productID, $heroesID);
+>>>>>>> fixing confused code
       if($response){
         echo json_encode(array('status' => 'ok', 'message' => 'The product has been successfully updated!'));
       }

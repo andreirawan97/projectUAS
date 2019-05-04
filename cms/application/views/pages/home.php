@@ -109,11 +109,16 @@
           <form id="newProductForm">
             <input type="hidden" id="editTextProductID" />
 <<<<<<< HEAD
+<<<<<<< HEAD
             <input type="hidden" id="editHeroesID" />
             <input type="hidden" id="editImageLink" />
 =======
             <input type="hidden" id="editTextLink"/>
 >>>>>>> fixing search feature, adding upload image feature
+=======
+            <input type="hidden" id="editHeroesID" />
+            <input type="hidden" id="editImageLink" />
+>>>>>>> fixing confused code
             <div class="form-group">
               <label for="editTextName">Name <a style="color: tomato">*</a></label>
               <input type="text" class="form-control" id="editTextName" placeholder="Enter product name...">
