@@ -9,7 +9,7 @@
       let {isLogin, userData} = getLocalStorage();
 
       if(isLogin){
-        location.href = 'index.php/login/goToHome';
+        location.href = 'login/goToHome';
       }
     }
 
@@ -25,22 +25,28 @@
           password,
         }
 
-        $.post('index.php/login/loginAction', data, (res) => {
+        $.post('login/loginAction', data, (res) => {
           let response = JSON.parse(res);
 
           let {status, message} = response;
           if(status === 'ok'){
-            Swal.fire('Success!', message, 'success');
-          
-            let newLocalStorage = {
-              isLogin: true,
-              userData: {
-                userID,
+            Swal.fire({
+              title: 'Success!',
+              text: message,
+              type: 'success',
+              showCancelButton: false,
+              confirmButtonText: 'Take me in!'
+            }).then((result) => {
+              let newLocalStorage = {
+                isLogin: true,
+                userData: {
+                  userID,
+                }
               }
-            }
-            setLocalStorage(newLocalStorage);
+              setLocalStorage(newLocalStorage);
 
-            location.href = 'index.php/login/goToHome';
+              location.href = 'login/goToHome';
+            })  
           }
           else{
             Swal.fire('Error!', message, 'error');
