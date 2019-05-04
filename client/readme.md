@@ -1,7 +1,7 @@
 # Client Apps
 
 IMPORTANT! Read this first!
-This readme will contain an important information
+This readme contains an important information
 
 ## **Local Storage Usage**
 
