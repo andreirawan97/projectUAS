@@ -16,7 +16,7 @@
     let {userData} = getLocalStorage();
     let {userID} = userData;
 
-    $.post('navbar/getCart', {userID}, (res) => {
+    $.post('cart/getCart', {userID}, (res) => {
       let response = JSON.parse(res);
       let {count} = response;
 
@@ -24,9 +24,22 @@
     })
   }
 
+  function _getUsername(){
+    let {userData} = getLocalStorage();
+    let {userID} = userData;
+
+    $('#textUsername').html(userID);
+  }
+
   $(document).ready(() => {
     _getSaldo();
     _getCart();
+    _getUsername();
+
+    $('#btnLogOut').click(() => {
+      removeLocalStorage();
+      location.href = 'Navbar/goToLogin';
+    })
   })
 </script>
 
@@ -49,10 +62,11 @@
           <i class="material-icons" style="color: white">person</i>
         </a>
         <div class="dropdown-menu dropdown-menu-lg-right">
+          <p id="textUsername" class="dropdown-item">Username...</p>
           <p id="textSaldo" class="dropdown-item">Saldo: Loading...</p>
           <div class="dropdown-divider"></div>
           <a href="#!" class="dropdown-item">Edit Profile</a>
-          <a href="#!" class="dropdown-item" style="color: red">Log Out</a>
+          <a id="btnLogOut" href="#!" class="dropdown-item" style="color: red">Log Out</a>
         </div>
       </div>
     </li>

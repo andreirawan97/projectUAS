@@ -14,5 +14,13 @@
 <body>
   <?php echo $NavigationBar ?>
 
+  <div class="container">
+
+    <h3 style="margin-top: 20px;">Latest Items</h3>
+    <div id="latestItemContainer" class="row">
+      <!-- To be added -->
+    </div>
+  </div>
+
 </body>
 </html>
