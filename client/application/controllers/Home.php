@@ -17,5 +17,11 @@ class Home extends CI_Controller {
     $this->load->view('pages/home.php', $data);
   }
 
+  public function fetchLatestProducts(){
+    $response = $this->HomeModel->fetchLatestProducts();
+
+    echo json_encode(array('datas' => $response));
+  }
+
 }
 ?>
