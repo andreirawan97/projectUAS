@@ -36,22 +36,22 @@
       <div class="mdl-cell mdl-cell--2-col"></div>
       <div class="mdl-cell mdl-cell--8-col centerVerticalHorizontal">
         <!-- Login Card -->
-        <div class="mdl-card mdl-shadow--2dp customCardStyle">
+        <div class="mdl-shadow--2dp customCardStyle">
           <!-- Card Content -->
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--2-col"></div>
             <div class="mdl-cell mdl-cell--8-col">
             <form action="#!" id="loginForm">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input autocorrect="off" autocomplete="off" class="mdl-textfield__input" type="text" id="username">
-                <label class="mdl-textfield__label" for="username">Username</label>
+                <input autocorrect="off" autocomplete="off" class="mdl-textfield__input mdl-color-text--white" type="text" id="username">
+                <label class="mdl-textfield__label mdl-color-text--white" style="font-size:20px"for="username">Username</label>
               </div>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input  class="mdl-textfield__input" type="password" id="password">
-                <label class="mdl-textfield__label" for="password">Password</label>
+                <input  class="mdl-textfield__input mdl-color-text--white" type="password" id="password">
+                <label class="mdl-textfield__label mdl-color-text--white"  style="font-size:20px" for="password">Password</label>
               </div>
 
-              <input type="submit" value="Login" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent right">
+              <input type="submit" style="background-color:grey;" value="Login" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent left">
             </form>
             </div>
             <div class="mdl-cell mdl-cell--2-col"></div>
