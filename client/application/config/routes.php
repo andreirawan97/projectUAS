@@ -53,8 +53,9 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['login'] = 'login';
 $route['signup'] = 'signup';
 $route['home'] = 'home';
 $route['navbar'] = 'navbar';
-$route['cart'] = 'cart';
-$route['login'] = 'login';
+$route['shoppingCart'] = 'shoppingCart';
+$route['searchResult'] = 'searchResult';

@@ -1,5 +1,5 @@
 <?php
-  class CartModel extends CI_Model {
+  class ShoppingCartModel extends CI_Model {
     // Private Method
     private function isUserHasThisProduct($userID, $productID){
       // This method is to check if the product is exist or not. If exist, UPDATE, if not, INSERT INTO
@@ -21,7 +21,7 @@
 
     // Public Method
     public function getCart($userID){
-      $query = $this->db->query("SELECT * FROM cart WHERE userID = '$userID'");
+      $query = $this->db->query("SELECT * FROM cart INNER JOIN products ON cart.productID = products.productID WHERE cart.userID = '$userID' ORDER BY products.name ASC");
 
       $row = $query->result_array();
 
@@ -37,6 +37,10 @@
       else{
         $this->db->query("INSERT INTO cart VALUES ('$productID', '$userID', null, 1)");
       }
+    }
+
+    public function deleteCart($userID, $cartID){
+      $this->db->query("DELETE FROM cart WHERE userID = '$userID' AND cartID = '$cartID'");
     }
   }
 ?>

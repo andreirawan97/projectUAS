@@ -12,7 +12,9 @@
       isLogin: false,
       userData: {
         userID: '',
-      }
+      },
+      searchQuery: '',
+      tmpProductID: '',
     }
 
     localStorage.setItem(lsName, JSON.stringify(initialData));
