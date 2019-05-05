@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 13, 2019 at 10:47 AM
+-- Generation Time: May 04, 2019 at 11:20 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -40,7 +40,31 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`productID`, `userID`, `cartID`, `quantity`) VALUES
-(2, 'andreirawan', 1, 1);
+(52, 'andreirawan', 2, 3),
+(53, 'andreirawan', 5, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `heroes`
+--
+
+CREATE TABLE `heroes` (
+  `heroesID` int(11) NOT NULL,
+  `heroesName` text NOT NULL,
+  `heroesAttr` varchar(3) NOT NULL,
+  `imageURL` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `heroes`
+--
+
+INSERT INTO `heroes` (`heroesID`, `heroesName`, `heroesAttr`, `imageURL`) VALUES
+(1, 'Pudge', 'STR', ''),
+(3, 'Juggernaut', 'AGI', ''),
+(4, 'Crystal Maiden', 'INT', ''),
+(5, 'Sven', 'STR', '');
 
 -- --------------------------------------------------------
 
@@ -54,15 +78,39 @@ CREATE TABLE `products` (
   `price` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `description` text NOT NULL,
-  `imageURL` varchar(128) NOT NULL
+  `imageURL` varchar(128) NOT NULL,
+  `heroesID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`productID`, `name`, `price`, `quantity`, `description`, `imageURL`) VALUES
-(2, 'Dark Artistry Cape', 100, 1, 'Expensive shit', '');
+INSERT INTO `products` (`productID`, `name`, `price`, `quantity`, `description`, `imageURL`, `heroesID`) VALUES
+(52, 'Dragonclaw Hook', 100, 7, '', '', 1),
+(53, 'Legacy of the blade keeper', 30, 5, 'test', '', 3),
+(54, 'Serakura', 20, 5, '', '', 3),
+(55, 'Frost avalanche', 30, 2, '', '', 4),
+(57, 'Bladeform Legacy', 69, 20, 'Keren boi', '', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `secret`
+--
+
+CREATE TABLE `secret` (
+  `userID` varchar(128) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `salt` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `secret`
+--
+
+INSERT INTO `secret` (`userID`, `password`, `salt`) VALUES
+('andreirawan', '0192023a7bbd73250516f069df18b500', 123);
 
 -- --------------------------------------------------------
 
@@ -111,10 +159,23 @@ ALTER TABLE `cart`
   ADD KEY `userID` (`userID`);
 
 --
+-- Indexes for table `heroes`
+--
+ALTER TABLE `heroes`
+  ADD PRIMARY KEY (`heroesID`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`productID`);
+  ADD PRIMARY KEY (`productID`),
+  ADD KEY `heroesID` (`heroesID`);
+
+--
+-- Indexes for table `secret`
+--
+ALTER TABLE `secret`
+  ADD PRIMARY KEY (`userID`);
 
 --
 -- Indexes for table `shoppingLog`
@@ -138,19 +199,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cartID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `heroes`
+--
+ALTER TABLE `heroes`
+  MODIFY `heroesID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `productID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `shoppingLog`
 --
 ALTER TABLE `shoppingLog`
-  MODIFY `shoppingLogID` bigint(128) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `shoppingLogID` bigint(128) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -162,6 +229,18 @@ ALTER TABLE `shoppingLog`
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `products` (`productID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`heroesID`) REFERENCES `heroes` (`heroesID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `secret`
+--
+ALTER TABLE `secret`
+  ADD CONSTRAINT `secret_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `shoppingLog`

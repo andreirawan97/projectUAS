@@ -56,3 +56,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route['signup'] = 'signup';
 $route['home'] = 'home';
 $route['navbar'] = 'navbar';
+$route['cart'] = 'cart';

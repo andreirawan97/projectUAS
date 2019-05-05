@@ -19,12 +19,8 @@
       echo json_encode(array('datas' => $response));
     }
 
-    public function getCart(){
-      $userID = $this->input->post('userID');
-
-      $response = $this->NavbarModel->getCart($userID);
-
-      echo json_encode(array('count' => count($response), 'datas' => $response));
+    public function goToLogin(){
+      redirect('login');
     }
   }
 ?>
