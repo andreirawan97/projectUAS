@@ -46,6 +46,7 @@
       if (file.length == 1){
         //show loading
 <<<<<<< HEAD
+<<<<<<< HEAD
         $('#loadingAdd').attr('class', 'loading d-flex align-items-center');
         $.ajax(settings).done(function(res) {
           //If the request is complete, the response will be the URL of uploaded image
@@ -168,6 +169,13 @@
       if (file.length == 1){
         $.ajax(settings).done(function(res) {
           //If the request is complete, the response will be the URL of uploaded image
+=======
+        $('#loadingAdd').attr('class', 'loading d-flex align-items-center');
+        $.ajax(settings).done(function(res) {
+          //If the request is complete, the response will be the URL of uploaded image
+          //hide loading
+          $('#loadingAdd').attr('class', 'loading d-none align-items-center');
+>>>>>>> add load animation while uploading
           let response = JSON.parse(res);
 
           let {data} = response;
@@ -323,6 +331,7 @@
 
       if(file.length == 1){
 <<<<<<< HEAD
+<<<<<<< HEAD
         $('#loadingEdit').attr('class', 'loading d-flex align-items-center');
         $.ajax(settings).done(function(res) {
           //If the request is complete, the response will be the URL of uploaded image
@@ -418,8 +427,12 @@
           })
         }
 =======
+=======
+        $('#loadingEdit').attr('class', 'loading d-flex align-items-center');
+>>>>>>> add load animation while uploading
         $.ajax(settings).done(function(res) {
           //If the request is complete, the response will be the URL of uploaded image
+          $('#loadingEdit').attr('class', 'loading d-none align-items-center');
           let response = JSON.parse(res);
 
           let {data} = response;

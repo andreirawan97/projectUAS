@@ -57,5 +57,10 @@ $route['login'] = 'login';
 $route['signup'] = 'signup';
 $route['home'] = 'home';
 $route['navbar'] = 'navbar';
+<<<<<<< HEAD
 $route['shoppingCart'] = 'shoppingCart';
 $route['searchResult'] = 'searchResult';
+=======
+$route['cart'] = 'cart';
+$route['login'] = 'login';
+>>>>>>> add load animation while uploading

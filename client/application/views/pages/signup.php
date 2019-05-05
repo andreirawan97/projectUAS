@@ -71,7 +71,13 @@
       </nav>
 
     </div>
+<<<<<<< HEAD
   </div>
+=======
+    <h1>bangsaattttttt</h1>
+  </main>
+</div>
+>>>>>>> add load animation while uploading
 </body>
 
 </html>
