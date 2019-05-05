@@ -73,12 +73,12 @@
               <input type="file" class="form-control" id="inputTextImageURL" accept="image/*" onchange="viewBeforeInsertForAdd(this);">
             </div>
             <div id="addPhotos" class="form-group"></div>
-            <div class="loading d-flex align-items-center" style="margin-left:31%;">
-                <div class="spinner-grow text-primary"></div>
-                <div class="spinner-grow text-success"></div>
-                <div class="spinner-grow text-info"></div>
-                <div class="spinner-grow text-warning"></div>
-                <div class="spinner-grow text-danger"></div>
+            <div id="loadingAdd" class="loading d-none align-items-center" style="margin-left:31%;">
+              <div class="spinner-grow text-primary"></div>
+              <div class="spinner-grow text-success"></div>
+              <div class="spinner-grow text-info"></div>
+              <div class="spinner-grow text-warning"></div>
+              <div class="spinner-grow text-danger"></div>
             </div>
           </form>
         </div>
@@ -134,7 +134,13 @@
             <div class="form-group">
               <img id="editPhotos" src="#" alt="no image" class="img-thumbnail"/>
             </div>
-
+            <div id="loadingEdit" class="loading d-none align-items-center" style="margin-left:31%;">
+              <div class="spinner-grow text-primary"></div>
+              <div class="spinner-grow text-success"></div>
+              <div class="spinner-grow text-info"></div>
+              <div class="spinner-grow text-warning"></div>
+              <div class="spinner-grow text-danger"></div>
+            </div>
           </form>
         </div>
         <div class="modal-footer">
