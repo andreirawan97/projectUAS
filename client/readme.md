@@ -16,6 +16,8 @@ type tokoDoto = {
   userData: {
     userID: string;
   };
+  searchQuery: string;
+  tmpProductID: string;
 };
 ```
 
@@ -27,6 +29,8 @@ let tokoDoto = {
   userData: {
     userID: '',
   },
+  searchQuery: '';
+  tmpProductID: '';
 };
 ```
 
@@ -97,6 +101,8 @@ let newObject = {
   userData: {
     userID: 'andreirawan',
   },
+  searchQuery: '',
+  tmpProductID: '',
 };
 
 setLocalStorage(newObject);
