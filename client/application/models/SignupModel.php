@@ -38,11 +38,7 @@
             return array('status' => 'ok', 'message' => 'Signup Successful!');
           }
           else{
-<<<<<<< HEAD
             return array('status' => 'err', 'message' =>'Signup Failed!');
-=======
-            return array('status' => 'err', 'message' ='Signup Failed!');
->>>>>>> fix conflict
           }
         }
     }
