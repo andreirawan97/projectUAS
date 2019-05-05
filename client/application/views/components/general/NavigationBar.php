@@ -8,7 +8,7 @@
       let {datas} = response;
       let {saldo} = datas[0];
       
-      $('#textSaldo').html(`Saldo: ${saldo}`);
+      $('#textSaldo').html(`Shell: ${saldo}`);
     })
   }
 
@@ -16,7 +16,7 @@
     let {userData} = getLocalStorage();
     let {userID} = userData;
 
-    $.post('cart/getCart', {userID}, (res) => {
+    $.post('navbar/getCartCount', {userID}, (res) => {
       let response = JSON.parse(res);
       let {count} = response;
 
@@ -36,6 +36,10 @@
     _getCart();
     _getUsername();
 
+    $('#btnShoppingCart').click(() => {
+      location.href='navbar/goToShoppingCart';
+    })
+
     $('#btnLogOut').click(() => {
       removeLocalStorage();
       location.href = 'Navbar/goToLogin';
@@ -45,7 +49,7 @@
 
 <!-- Image and text -->
 <nav class="navbar navbar-light" style="background-color: #7e57c2">
-  <a class="navbar-brand" href="#" style="color: white;">
+  <a class="navbar-brand" href="navbar/goToHome" style="color: white;">
     <!-- <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""> -->
     TokoDoto
   </a>
@@ -53,7 +57,7 @@
   <ul class="nav justify-content-end">
     <li class="nav-item dropdown">
       <!-- Shopping Cart -->
-      <button type="button" class="btn btn-sm" style="margin-right: 10px;">
+      <button id="btnShoppingCart" type="button" class="btn btn-sm" style="margin-right: 10px;">
         <i class="material-icons" style="color: white">shopping_cart</i> <span id="cartBadge" class="badge badge-light">....</span>
       </button>
       <!-- User Profile Menu Dropdown -->
@@ -62,8 +66,8 @@
           <i class="material-icons" style="color: white">person</i>
         </a>
         <div class="dropdown-menu dropdown-menu-lg-right">
-          <p id="textUsername" class="dropdown-item">Username...</p>
-          <p id="textSaldo" class="dropdown-item">Saldo: Loading...</p>
+          <a href="#!" id="textUsername" class="dropdown-item">Username...</a>
+          <a href="#!" id="textSaldo" class="dropdown-item">Shell: Loading...</a>
           <div class="dropdown-divider"></div>
           <a href="#!" class="dropdown-item">Edit Profile</a>
           <a id="btnLogOut" href="#!" class="dropdown-item" style="color: red">Log Out</a>

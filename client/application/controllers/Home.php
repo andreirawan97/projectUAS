@@ -23,5 +23,18 @@ class Home extends CI_Controller {
     echo json_encode(array('datas' => $response));
   }
 
+  public function updateCart(){
+    $userID = $this->input->post('userID');
+    $productID = $this->input->post('productID');
+    $quantity = $this->input->post('quantity');
+
+    $this->HomeModel->updateCart($userID, $productID, $quantity);
+
+    echo json_encode(array('status' => 'ok'));
+  }
+
+  public function goToSearchResult(){
+    redirect('searchResult');
+  }
 }
 ?>

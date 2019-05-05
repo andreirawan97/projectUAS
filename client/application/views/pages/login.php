@@ -27,7 +27,7 @@
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation -->
       <nav class="browser-default mdl-navigation">
-        <a class="mdl-navigation__link" href="index.php/login/goToSignup">Don't have an account? Signup Now!</a>
+        <a class="mdl-navigation__link" href="login/goToSignup">Don't have an account? Signup Now!</a>
       </nav>
     </div>
   </header>

@@ -11,6 +11,14 @@
 
     }
 
+    public function getCartCount(){
+      $userID = $this->input->post('userID');
+
+      $response = $this->NavbarModel->getCartCount($userID);
+
+      echo json_encode(array('count' => count($response)));
+    }
+
     public function getSaldo(){
       $userID = $this->input->post('userID');
 
@@ -21,6 +29,14 @@
 
     public function goToLogin(){
       redirect('login');
+    }
+
+    public function goToShoppingCart(){
+      redirect('shoppingCart');
+    }
+
+    public function goToHome(){
+      redirect('home');
     }
   }
 ?>
