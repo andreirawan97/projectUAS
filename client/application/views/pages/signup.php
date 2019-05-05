@@ -5,9 +5,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-indigo.min.css">
-
-  <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -18,10 +15,6 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <style>
-  body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-  </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
@@ -60,6 +53,7 @@
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
                   <input autocorrect="off" autocomplete="off" id="password" class="mdl-textfield__input mdl-color-text--grey" name="password" type="password" class="validate">
+                  <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                   <label class="mdl-textfield__label mdl-color-text--white"  style="font-size:17px" for="password">Password</label>
                 </div>
               </div>

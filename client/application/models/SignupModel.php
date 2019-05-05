@@ -44,20 +44,3 @@
     }
 ?>
 
-<?php
-      // $inputtedUserID = $_POST['inputtedUserID'];
-      // $inputtedFullName = $_POST['inputtedFullName'];
-      // $inputtedEmail = $_POST['inputtedEmail'];
-      // $inputtedPassword = $_POST['inputtedPassword'];
-      // $registerDate = $_POST['registerDate'];
-      // $response;
-      // if(!isDuplicateID($inputtedUserID) && !isDuplicateEmail($inputtedEmail)){
-      //   insertToDatabase($inputtedUserID, $inputtedFullName, $inputtedEmail, $inputtedPassword, null, $registerDate);
-        
-      //   $response = json_encode(array("status" => "ok", "message" => "Signup Succesful!"));
-      // }
-      // else{
-      //   $response = json_encode(array("status" => "err", "message" => "Email or ID has been used"));
-      // }
-      // echo $response;
-?>
