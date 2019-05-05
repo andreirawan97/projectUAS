@@ -45,11 +45,17 @@
       //insert database w/image
       if (file.length == 1){
         //show loading
+<<<<<<< HEAD
         $('#loadingAdd').attr('class', 'loading d-flex align-items-center');
         $.ajax(settings).done(function(res) {
           //If the request is complete, the response will be the URL of uploaded image
           //hide loading
           $('#loadingAdd').attr('class', 'loading d-none align-items-center');
+=======
+        $.ajax(settings).done(function(res) {
+          //If the request is complete, the response will be the URL of uploaded image
+          //hide loading
+>>>>>>> add loading animation but not done yet
           let response = JSON.parse(res);
 
           let {data} = response;
@@ -868,6 +874,7 @@
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 <<<<<<< HEAD
+<<<<<<< HEAD
         reader.onload = function (e) {
           $('#addPhotos').html(`<img src="${e.target.result}" alt="your image" class="img-thumbnail"/>`);
 =======
@@ -875,6 +882,10 @@
         reader.onload = function (e) {
             $('#addPhotos').attr('src', e.target.result);
 >>>>>>> fixing search feature, adding upload image feature
+=======
+        reader.onload = function (e) {
+          $('#addPhotos').html(`<img src="${e.target.result}" alt="your image" class="img-thumbnail"/>`);
+>>>>>>> add loading animation but not done yet
         }
         reader.readAsDataURL(input.files[0]);
     }
@@ -886,10 +897,14 @@
 
         reader.onload = function (e) {
 <<<<<<< HEAD
+<<<<<<< HEAD
           $('#editPhotos').attr('src', e.target.result);
 =======
             $('#editPhotos').attr('src', e.target.result);
 >>>>>>> fixing search feature, adding upload image feature
+=======
+          $('#editPhotos').attr('src', e.target.result);
+>>>>>>> add loading animation but not done yet
         }
         reader.readAsDataURL(input.files[0]);
     }
