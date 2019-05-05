@@ -31,8 +31,7 @@
       <tbody id="tbodyProducts">
         <!-- To Be Added -->
       </tbody>
-    </table>
-    
+    </table>   
   </div>
 
   <!-- Modal -->
@@ -52,8 +51,8 @@
               <input type="text" class="form-control" id="inputTextName" placeholder="Enter product name...">
             </div>
             <div class="form-group">
-              <label for="inputHeroesName">Heroes  <a style="color: tomato">*</a></label>
-              <select class="form-control" id="inputHeroesName">
+              <label for="inputHeroesName">Hero  <a style="color: tomato">*</a></label>
+              <select class="form-control" id="inputHeroName">
                 <!-- To Be Added -->
               </select>
             </div>
@@ -71,7 +70,15 @@
             </div>
             <div class="form-group">
               <label for="inputTextImageURL">Image URL</label>
-              <input type="text" class="form-control" id="inputTextImageURL" placeholder="Enter product image url...">
+              <input type="file" class="form-control" id="inputTextImageURL" accept="image/*" onchange="viewBeforeInsertForAdd(this);">
+            </div>
+            <div id="addPhotos" class="form-group"></div>
+            <div id="loadingAdd" class="loading d-none align-items-center" style="margin-left:31%;">
+              <div class="spinner-grow text-primary"></div>
+              <div class="spinner-grow text-success"></div>
+              <div class="spinner-grow text-info"></div>
+              <div class="spinner-grow text-warning"></div>
+              <div class="spinner-grow text-danger"></div>
             </div>
           </form>
         </div>
@@ -96,13 +103,15 @@
         <div class="modal-body">
           <form id="newProductForm">
             <input type="hidden" id="editTextProductID" />
+            <input type="hidden" id="editHeroesID" />
+            <input type="hidden" id="editImageLink" />
             <div class="form-group">
               <label for="editTextName">Name <a style="color: tomato">*</a></label>
               <input type="text" class="form-control" id="editTextName" placeholder="Enter product name...">
             </div>
             <div class="form-group">
               <label for="editHeroesName">Heroes  <a style="color: tomato">*</a></label>
-              <select class="form-control" id="editHeroesName">
+              <select class="form-control" id="editHeroName">
                 <!-- To Be Added -->
               </select>
             </div>
@@ -120,7 +129,17 @@
             </div>
             <div class="form-group">
               <label for="editTextImageURL">Image URL</label>
-              <input type="text" class="form-control" id="editTextImageURL" placeholder="Enter product image url...">
+              <input type="file" class="form-control" id="editTextImageURL" accept="image/*" onchange="viewBeforeInsertForEdit(this);">
+            </div>
+            <div class="form-group">
+              <img id="editPhotos" src="#" alt="no image" class="img-thumbnail"/>
+            </div>
+            <div id="loadingEdit" class="loading d-none align-items-center" style="margin-left:31%;">
+              <div class="spinner-grow text-primary"></div>
+              <div class="spinner-grow text-success"></div>
+              <div class="spinner-grow text-info"></div>
+              <div class="spinner-grow text-warning"></div>
+              <div class="spinner-grow text-danger"></div>
             </div>
           </form>
         </div>
