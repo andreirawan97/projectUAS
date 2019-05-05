@@ -13,6 +13,7 @@
 <<<<<<< HEAD
       let heroName = $('#inputHeroName').val().trim();
       let heroID = $('#inputHeroName option:selected').data('status');
+<<<<<<< HEAD
 =======
       let heroName = $('#inputHeroesName').val().trim();
 =======
@@ -20,6 +21,8 @@
 >>>>>>> fixing confused code
       let heroID = '';
 >>>>>>> fixing search feature, adding upload image feature
+=======
+>>>>>>> renderOption disisipi heroesID
 
       let url = 'https://api.imgur.com/3/image';
       let clientID = '93978d38370b0b5';
@@ -158,139 +161,114 @@
       //insert database w/image
       if (file.length == 1){
         $.ajax(settings).done(function(res) {
-            //If the request is complete, the response will be the URL of uploaded image
-            let response = JSON.parse(res);
-
-            let {data} = response;
-            let {link} = data;
-            let imageURL = link;
-            
-            //mencari heroID berdasarkan namanya
-            $.get('index.php/home/getIdHeroes', (res) => {
-            let response = JSON.parse(res);
-            
-            let {status, datas} = response;
-            if(status === 'ok'){
-              datas.forEach((data, i) => {
-                let {heroesID, heroesName} = data;
-                if (heroName == heroesName){
-                  heroID = heroesID;
-                  //diatas didapatkan heroIDnya
-                  if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
-                    Swal.fire(
-                      'Error!',
-                      'Name, price, or quantity cannot be empty!',
-                      'error'
-                    )
-                  }
-                  else{
-                    let data = {
-                      name,
-                      price,
-                      quantity,
-                      description,
-                      imageURL,
-                      heroID
-                    }
-
-                    $.post('index.php/home/addNewProduct', data, (res) => {
-                      let response = JSON.parse(res);
-
-                      let {status, message} = response;
-
-                      if(status === 'ok'){
-                        Swal.fire({
-                          title: 'Success!',
-                          text: message,
-                          type: 'success',
-                          showCancelButton: false,
-                          confirmButtonColor: '#3085d6',
-                          confirmButtonText: 'Great!'
-                        }).then((result) => {
-                          if (result.value) {
-                            $('#addNewModal').modal('hide');
-                            renderAllProducts();
-                            resetAddNewForm();
-                          }
-                        })
-                      }
-                      else{
-                        Swal.fire(
-                          'Error!',
-                          message,
-                          'error'
-                        )
-                      }
-                    })
-                  }
-                }
-              });
-            }
-          });
-        });
-      }else{ //insert database wo/ image
-        $.get('index.php/home/getIdHeroes', (res) => {
-          imageURL = '';
+          //If the request is complete, the response will be the URL of uploaded image
           let response = JSON.parse(res);
+
+          let {data} = response;
+          let {link} = data;
+          let imageURL = link;
           
-          let {status, datas} = response;
-          if(status === 'ok'){
-            datas.forEach((data, i) => {
-              let {heroesID, heroesName} = data;
-              if (heroName == heroesName){
-                heroID = heroesID;
-                if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
-                  Swal.fire(
-                    'Error!',
-                    'Name, price, or quantity cannot be empty!',
-                    'error'
-                  )
-                }
-                else{
-                  let data = {
-                    name,
-                    price,
-                    quantity,
-                    description,
-                    imageURL,
-                    heroID
+          if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+            Swal.fire(
+              'Error!',
+              'Name, price, or quantity cannot be empty!',
+              'error'
+            )
+          }
+          else{
+            let data = {
+              name,
+              price,
+              quantity,
+              description,
+              imageURL,
+              heroID
+            }
+
+            $.post('index.php/home/addNewProduct', data, (res) => {
+              let response = JSON.parse(res);
+
+              let {status, message} = response;
+
+              if(status === 'ok'){
+                Swal.fire({
+                  title: 'Success!',
+                  text: message,
+                  type: 'success',
+                  showCancelButton: false,
+                  confirmButtonColor: '#3085d6',
+                  confirmButtonText: 'Great!'
+                }).then((result) => {
+                  if (result.value) {
+                    $('#addNewModal').modal('hide');
+                    renderAllProducts();
+                    resetAddNewForm();
                   }
-
-                  $.post('index.php/home/addNewProduct', data, (res) => {
-                    let response = JSON.parse(res);
-
-                    let {status, message} = response;
-
-                    if(status === 'ok'){
-                      Swal.fire({
-                        title: 'Success!',
-                        text: message,
-                        type: 'success',
-                        showCancelButton: false,
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Great!'
-                      }).then((result) => {
-                        if (result.value) {
-                          $('#addNewModal').modal('hide');
-                          renderAllProducts();
-                          resetAddNewForm();
-                        }
-                      })
-                    }
-                    else{
-                      Swal.fire(
-                        'Error!',
-                        message,
-                        'error'
-                      )
-                    }
-                  })
-                }
+                })
               }
-            });
+              else{
+                Swal.fire(
+                  'Error!',
+                  message,
+                  'error'
+                )
+              }
+            })
           }
         });
+<<<<<<< HEAD
 >>>>>>> fixing search feature, adding upload image feature
+=======
+      }else{ //insert database wo/ image
+        imageURL = '';
+        if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+          Swal.fire(
+            'Error!',
+            'Name, price, or quantity cannot be empty!',
+            'error'
+          )
+        }
+        else{
+          let data = {
+            name,
+            price,
+            quantity,
+            description,
+            imageURL,
+            heroID
+          }
+
+          $.post('index.php/home/addNewProduct', data, (res) => {
+            let response = JSON.parse(res);
+
+            let {status, message} = response;
+
+            if(status === 'ok'){
+              Swal.fire({
+                title: 'Success!',
+                text: message,
+                type: 'success',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Great!'
+              }).then((result) => {
+                if (result.value) {
+                  $('#addNewModal').modal('hide');
+                  renderAllProducts();
+                  resetAddNewForm();
+                }
+              })
+            }
+            else{
+              Swal.fire(
+                'Error!',
+                message,
+                'error'
+              )
+            }
+          })
+        }
+>>>>>>> renderOption disisipi heroesID
       }
     })
 
@@ -659,6 +637,7 @@
           let {heroesID, heroesName} = data;
           $('#inputHeroName').append(`
 <<<<<<< HEAD
+<<<<<<< HEAD
             <option data-status='${heroesID}'>${heroesName}</option>
           `)
           $('#editHeroName').append(`
@@ -669,6 +648,12 @@
           $('#editHeroName').append(`
             <option>${heroesName}</option>
 >>>>>>> fixing confused code
+=======
+            <option data-status='${heroesID}'>${heroesName}</option>
+          `)
+          $('#editHeroName').append(`
+            <option data-status='${heroesID}'>${heroesName}</option>
+>>>>>>> renderOption disisipi heroesID
           `)
         });
       }
@@ -739,6 +724,7 @@
     $('#editTextDescription').val(description);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     $('#editHeroName').val(heroesName);
     $('#editPhotos').attr('src', imageURL);
 =======
@@ -748,6 +734,9 @@
 >>>>>>> fixing search feature, adding upload image feature
 =======
     $('#editHeroesName').val(heroesName);
+=======
+    $('#editHeroName').val(heroesName);
+>>>>>>> renderOption disisipi heroesID
     $('#editPhotos').attr('src', imageURL);
 >>>>>>> fixing confused code
     $('#editModal').modal('show');
