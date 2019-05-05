@@ -24,7 +24,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="material-icons">search</i></span>
             </div>
-            <input id="inputTextSearch" type="text" class="form-control" aria-label="" placeholder="Enter product name...">
+            <input autocomplete="off" id="inputTextSearch" type="text" class="form-control" aria-label="" placeholder="Enter keyword...">
           </div>
         </form>
 
