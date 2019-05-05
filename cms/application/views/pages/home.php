@@ -31,8 +31,7 @@
       <tbody id="tbodyProducts">
         <!-- To Be Added -->
       </tbody>
-    </table>
-    
+    </table>   
   </div>
 
   <!-- Modal -->
@@ -73,8 +72,13 @@
               <label for="inputTextImageURL">Image URL</label>
               <input type="file" class="form-control" id="inputTextImageURL" accept="image/*" onchange="viewBeforeInsertForAdd(this);">
             </div>
-            <div class="form-group">
-              <img id="addPhotos" src="#" alt="your image" class="img-thumbnail"/>
+            <div id="addPhotos" class="form-group"></div>
+            <div class="loading d-flex align-items-center" style="margin-left:31%;">
+                <div class="spinner-grow text-primary"></div>
+                <div class="spinner-grow text-success"></div>
+                <div class="spinner-grow text-info"></div>
+                <div class="spinner-grow text-warning"></div>
+                <div class="spinner-grow text-danger"></div>
             </div>
           </form>
         </div>
@@ -128,8 +132,9 @@
               <input type="file" class="form-control" id="editTextImageURL" accept="image/*" onchange="viewBeforeInsertForEdit(this);">
             </div>
             <div class="form-group">
-              <img id="editPhotos" src="#" alt="your image" class="img-thumbnail"/>
+              <img id="editPhotos" src="#" alt="no image" class="img-thumbnail"/>
             </div>
+
           </form>
         </div>
         <div class="modal-footer">

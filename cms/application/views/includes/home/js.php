@@ -30,8 +30,10 @@
       
       //insert database w/image
       if (file.length == 1){
+        //show loading
         $.ajax(settings).done(function(res) {
           //If the request is complete, the response will be the URL of uploaded image
+          //hide loading
           let response = JSON.parse(res);
 
           let {data} = response;
@@ -456,9 +458,8 @@
   function viewBeforeInsertForAdd(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-
         reader.onload = function (e) {
-            $('#addPhotos').attr('src', e.target.result);
+          $('#addPhotos').html(`<img src="${e.target.result}" alt="your image" class="img-thumbnail"/>`);
         }
         reader.readAsDataURL(input.files[0]);
     }
@@ -469,7 +470,7 @@
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $('#editPhotos').attr('src', e.target.result);
+          $('#editPhotos').attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
     }
