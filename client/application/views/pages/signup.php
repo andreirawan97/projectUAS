@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -25,9 +26,9 @@
   <?php echo $css ?>
   <title>Signup</title>
 </head>
-<body background="https://i.pinimg.com/originals/c6/32/b3/c632b3bc2ec8f30871d02bb21d3e29e2.jpg">
-<div style="display: flex; flex: 1; height: 100vh; justify-content: left; align-items: left">
-    <div style="height: 450px; width: 800px; background-image: white; border-radius: 20px; padding: 40px 80px 40px 80px;">
+<body>
+<div class="layout-transparent mdl-layout mdl-js-layout" style="display: flex; flex: 1; height: 100vh; justify-content: left; align-items: left">
+    <div  style="height: 450px; width: 800px; background-image: white; border-radius: 20px; padding: 40px 80px 40px 80px;">
       <!-- Sidebar/menu -->
       <nav class=" w3-collapse w3-transparent w3-animate-left" style="margin-top: 10px;" id="mySidebar"><br>
         <div class="w3-container" style="color : white;" >
@@ -36,29 +37,30 @@
               <div class="collumn" style="margin-bottom:20px">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
                   <input autocorrect="off" autocomplete="off" id="userID" class="mdl-textfield__input mdl-color-text--grey" name="userID" type="text">
-                  <label class="mdl-textfield__label mdl-color-text--white" style="font-size:17px"for="userID">Username</label>
+                  <label class="mdl-textfield__label mdl-color-text--white" for="userID">Username</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
                   <input autocorrect="off" autocomplete="off" id="firstName" class="mdl-textfield__input mdl-color-text--grey" name="firstName" type="text">
-                  <label class="mdl-textfield__label mdl-color-text--white"  style="font-size:17px" for="firstName">First Name</label>
+                  <label class="mdl-textfield__label mdl-color-text--white" for="firstName">First Name</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
                   <input autocorrect="off" autocomplete="off" id="lastName" class="mdl-textfield__input mdl-color-text--grey" name="lastName" type="text">
-                  <label class="mdl-textfield__label mdl-color-text--white"  style="font-size:17px" for="lastName">Last Name</label>
+                  <label class="mdl-textfield__label mdl-color-text--white" for="lastName">Last Name</label>
                 </div>
 
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
                   <input autocorrect="off" autocomplete="off" id="email" name="email" class="mdl-textfield__input mdl-color-text--grey" type="email" class="validate">
-                  <label class="mdl-textfield__label mdl-color-text--white"  style="font-size:17px" for="email">Email</label>
+                  <label class="mdl-textfield__label mdl-color-text--white" for="email">Email</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
-                  <input autocorrect="off" autocomplete="off" id="password" class="mdl-textfield__input mdl-color-text--grey" name="password" type="password" class="validate">
-                  <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                  <label class="mdl-textfield__label mdl-color-text--white"  style="font-size:17px" for="password">Password</label>
+                  <input autocorrect="off" autocomplete="off" id="password" class="mdl-textfield__input mdl-color-text--grey" name="password" type="password" class="validate" >
+                  <label class="mdl-textfield__label mdl-color-text--white" for="password">Password</label>
                 </div>
+                <i id="iconEye" class="fa fa-eye" onclick="revealPass()"></i> 
+                <label for="showPassword" style="font-size:12px; font-weight:light">Show Password</label>
               </div>
 
-              <input class="btn" type="submit" value="SignUp!" style="font-size: 20px; width: 50%; color:black; background-color: grey">
+              <input class="btn" type="submit" value="SignUp!" style="font-size: 20px; width: 50%; font-weight:bold; color:black; background-color: grey">
             </form>
         </div>
         <div class="w3-bar-block">

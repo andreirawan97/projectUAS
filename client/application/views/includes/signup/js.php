@@ -67,5 +67,20 @@ $(document).ready(() => {
   });
 });
 
+function revealPass() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+
+  var eye = $('#iconEye').attr('class');
+  if(eye === 'fa fa-eye'){
+    $('#iconEye').attr('class', 'fa fa-eye-slash');
+  }else{
+    $('#iconEye').attr('class', 'fa fa-eye');
+  }
+}
 
 </script>
