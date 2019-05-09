@@ -15,6 +15,10 @@
       },
       searchQuery: '',
       tmpProductID: '',
+<<<<<<< HEAD
+=======
+      tmpHeroesID: '',
+>>>>>>> make a detail item page(responsive)
     }
 
     localStorage.setItem(lsName, JSON.stringify(initialData));

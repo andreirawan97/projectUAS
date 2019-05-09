@@ -23,6 +23,7 @@ class Home extends CI_Controller {
     echo json_encode(array('datas' => $response));
   }
 
+<<<<<<< HEAD
   public function updateCart(){
     $userID = $this->input->post('userID');
     $productID = $this->input->post('productID');
@@ -35,6 +36,10 @@ class Home extends CI_Controller {
 
   public function goToSearchResult(){
     redirect('searchResult');
+=======
+  public function goToDetail(){
+    redirect('detailItem');
+>>>>>>> make a detail item page(responsive)
   }
 }
 ?>

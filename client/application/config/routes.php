@@ -63,4 +63,8 @@ $route['searchResult'] = 'searchResult';
 =======
 $route['cart'] = 'cart';
 $route['login'] = 'login';
+<<<<<<< HEAD
 >>>>>>> add load animation while uploading
+=======
+$route['detailItem'] = 'detailItem';
+>>>>>>> make a detail item page(responsive)

@@ -2,6 +2,7 @@
   $(document).ready(() => {
     fetchLatestProducts();
 
+<<<<<<< HEAD
     $('#searchForm').on('submit', (e) =>{
       e.preventDefault();
 
@@ -22,6 +23,8 @@
         location.href="home/goToSearchResult";
       }
     })
+=======
+>>>>>>> make a detail item page(responsive)
   })
 
   function fetchLatestProducts(){
@@ -31,8 +34,12 @@
 
       $('#latestItemContainer').html('');
       datas.forEach((data) => {
+<<<<<<< HEAD
         console.log(data);
         let {name, price, productID, heroesName, stock} = data;
+=======
+        let {name, description, productID, heroesName, quantity, heroesID} = data;
+>>>>>>> make a detail item page(responsive)
         const productCard = `
           <div class="col-4" style="margin-top: 20px">
             <div class="card">
@@ -44,7 +51,15 @@
                   <br />Harga: ${price} Shell
                   <br />Stok: ${stock}
                 </p>
-                <button type="button" class="btn btn-outline-info btn-sm btn-block" style="margin-bottom: 5px">View Detail</button>
+                <button
+                  id="btnDetail"
+                  productID="${productID}"
+                  heroesID="${heroesID}"
+                  onClick='goToDetail(this)'
+                  type="button" 
+                  class="btn btn-outline-info btn-sm btn-block btnDetail"
+                  style="margin-bottom: 5px">View Detail
+                </button>
                 <a 
                   href="#!" 
                   class="btn btn-primary btn-sm btn-block"
@@ -95,4 +110,19 @@
     });
   }
 
+  function goToDetail(btnObject){
+    let productID = btnObject.getAttribute('productID');
+    let heroesID = btnObject.getAttribute('heroesID');
+
+    let tokoDoto = getLocalStorage();
+
+    let newTokoDoto = {
+      ...tokoDoto,
+      tmpProductID : productID,
+      tmpHeroesID : heroesID
+    }
+    
+    setLocalStorage(newTokoDoto);
+    location.href= 'home/goToDetail';
+  }
 </script>
