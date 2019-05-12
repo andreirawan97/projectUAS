@@ -73,9 +73,9 @@
         </a>
         <div class="dropdown-menu dropdown-menu-lg-right">
           <a href="#!" id="textUsername" class="dropdown-item">Username...</a>
-          <a href="#!" id="textSaldo" class="dropdown-item">Shell: Loading...</a>
+          <a href="navbar/goToIsiSaldo" id="textSaldo" class="dropdown-item">Shell: Loading...</a>
           <div class="dropdown-divider"></div>
-          <a href="#!" class="dropdown-item">Edit Profile</a>
+          <a href="navbar/goToEditProfile" class="dropdown-item">Edit Profile</a>
           <a id="btnLogOut" href="#!" class="dropdown-item" style="color: red">Log Out</a>
         </div>
       </div>
