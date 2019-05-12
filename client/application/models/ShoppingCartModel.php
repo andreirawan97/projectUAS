@@ -42,5 +42,64 @@
     public function deleteCart($userID, $cartID){
       $this->db->query("DELETE FROM cart WHERE userID = '$userID' AND cartID = '$cartID'");
     }
+
+    public function getSaldo($userID){
+      $res = $this->db->query("SELECT saldo FROM users WHERE userID = '$userID'");
+      $response = $res->result_array();
+
+      return $response;
+    }
+
+    public function getTotalBayar($userID){
+      $res = $this->db->query("SELECT * FROM cart INNER JOIN products ON cart.productID = products.productID WHERE cart.userID = '$userID' ORDER BY products.name ASC");
+      $response = $res->result_array();
+
+      $totalBayar = 0;
+      foreach($response as $product){
+        $totalBayar += $product['price'] * $product['quantity'];
+      }
+      return $totalBayar;
+    }
+
+    public function checkStock($userID){
+      $response = $this->getCart($userID);
+      $passFlag = true;
+      foreach($response as $row){
+        if($row['quantity'] > $row['stock']){
+          $passFlag = false;
+        }
+        else{
+          continue;
+        }
+      }
+
+      return $passFlag;
+    }
+
+    public function reduceSaldo($userID){
+      $a = $this->getSaldo($userID);
+      $saldo = $a[0]['saldo'];
+
+      $updatedSaldo = $saldo - $this->getTotalBayar($userID);
+      $this->db->query("UPDATE users SET saldo = '$updatedSaldo' WHERE userID = '$userID'");
+    }
+
+    public function reduceStock($userID){
+      $userID = 'andreirawan';
+      $carts = $this->getCart($userID);
+      
+      for($i = 0; $i < count($carts); $i++){
+        $quantity = $carts[$i]['quantity'];
+        $productID = $carts[$i]['productID'];
+        $stock = $carts[$i]['stock'];
+        $newStock = $stock - $quantity;
+
+        $this->db->query("UPDATE products SET stock = '$newStock' WHERE productID = '$productID'");
+      }
+    }
+
+    public function clearCart($userID){
+      $this->db->query("DELETE FROM cart WHERE userID = '$userID'");
+    }
   }
 ?>

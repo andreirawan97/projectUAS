@@ -31,6 +31,12 @@
     $('#textUsername').html(userID);
   }
 
+  function _refreshNavbar(){
+    _getSaldo();
+    _getCart();
+    _getUsername();
+  }
+
   $(document).ready(() => {
     _getSaldo();
     _getCart();

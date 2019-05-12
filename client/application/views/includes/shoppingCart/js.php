@@ -1,7 +1,47 @@
 <script>
+  let totalProduct = 0;
+
   $(document).ready(() => {
     fetchShoppingCart();
+
+    $('#btnCheckout').click(() => {
+      Swal.fire({
+        title: 'Checkout',
+        text: "Are you sure?",
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: 'green',
+        confirmButtonText: 'Confirm'
+      }).then((result) => {
+        if (result.value) {
+          if(totalProduct === 0){
+            Swal.fire('Oopsie!', 'Keranjang kosong!', 'error');
+          }else{
+            checkoutProduct();
+          }
+        }
+      })
+    })
   })
+
+  function checkoutProduct(){
+    let {userData} = getLocalStorage();
+    let {userID} = userData;
+
+    $.post('shoppingCart/checkout', {userID}, (res) => {
+      let response = JSON.parse(res);
+      let {status, message} = response;
+      
+      if(status === 'ok'){
+        Swal.fire('Thank you!', message, 'success');
+        _refreshNavbar();
+        fetchShoppingCart();
+      }
+      else{
+        Swal.fire('Oopsie!', message, 'error');
+      }
+    })
+  }
 
   function fetchShoppingCart(){
     let {userData} = getLocalStorage();
@@ -10,7 +50,8 @@
     $.post('shoppingCart/getCart', {userID}, (res) => {
       let response = JSON.parse(res);
       let {datas} = response;
-      console.log(datas);
+      let totalBayar = 0;
+      totalProduct = 0;
 
       $('#cartListContainer').html('');
 
@@ -20,7 +61,8 @@
 
       datas.forEach((data) => {
         let {name, quantity, stock, cartID, price} = data;
-
+        totalProduct += 1;
+        totalBayar += price * quantity;
         const card = `
           <div class="card" style="padding: 20px 20px 20px 20px; margin: 20px 0px 20px 0px;">
             <div class="row">
@@ -56,6 +98,15 @@
 
         $('#cartListContainer').append(card);
       })
+
+      const info = `
+        <div class="row" style="display: flex; justify-content: space-between; padding: 0px 15px 0px 15px;">
+          <h5 id="totalShell">Total Shell: NaN</h5>
+          <button id="btnCheckout" class="btn btn-success btn-sm"><i class="material-icons">shopping_basket</i> Checkout</button>
+        </div>
+      `
+      $('#shoppingCartContainer').append(info);
+      $('#totalShell').html(`Total Shell: ${totalBayar}`);
     })
   }
 
