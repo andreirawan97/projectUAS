@@ -15,14 +15,14 @@
             let {datas} = response;
 
             datas.forEach((datas) => {
-                let {description,heroesID,heroesName,imageURL,name,price,productID,quantity} = datas;
+                let {description,heroesID,heroesName,imageURL,name,price,productID,stock} = datas;
                 
                 $('.miniView1').html(`
                     <h4>${name}</h4>
                     <p>Heroes : ${heroesName}</p>
                 `);
                 $('.miniView2').html(`
-                    <p>Stock : ${quantity}</p>
+                    <p>Stock : ${stock}</p>
                     <p>Price : $${price} </p>
                     <hr>
                     ${description}
@@ -43,7 +43,7 @@
                 $('.largeView').html(`
                     <h2>${name}</h2>
                     <p>Heroes : ${heroesName} </p>
-                    <p>Stock : ${quantity} </p>
+                    <p>Stock : ${stock} </p>
                     <p>Price : $${price} </p>
                     <a 
                         href="#!" 
@@ -71,7 +71,7 @@
             let {datas} = response;
 
             datas.forEach((data) => {
-                let {description,heroesAttr,heroesID,heroesName,name,price,productID,quantity,imageURL} = data;
+                let {description,heroesAttr,heroesID,heroesName,name,price,productID,stock,imageURL} = data;
                 if(productID === tmpProductID){
 
                 }else{
@@ -85,7 +85,7 @@
                                 <p class="card-text" style="font-size: 12px;">
                                 <a href="#! class="card-text" style="font-size: 12px;">${heroesName}</a>
                                 <br />${description || '<i>No Description</i>'}
-                                <br />Stok: ${quantity}
+                                <br />Stok: ${stock}
                                 </p>
                                 <button
                                 id="btnDetail"
@@ -118,7 +118,7 @@
             quantity: 1,
         }
 
-        $.post('cart/updateCart', data, (res) => {
+        $.post('shoppingCart/updateCart', data, (res) => {
         let response = JSON.parse(res);
         
         _getCart();

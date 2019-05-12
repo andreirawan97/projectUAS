@@ -29,10 +29,8 @@
     }
 
     public function updateCart($userID, $productID, $quantity){
-      if($this->isUserHasThisProduct($userID, $productID)){
-        $latestQuantity = $this->getLatestQuantity($userID, $productID) + 1;
-
-        $this->db->query("UPDATE cart SET quantity = $latestQuantity WHERE userID = '$userID' AND productID = '$productID'");
+      if($this->isUserHasThisProduct($userID, $productID,$quantity)){
+        $this->db->query("UPDATE cart SET quantity = $quantity WHERE userID = '$userID' AND productID = '$productID'");
       }
       else{
         $this->db->query("INSERT INTO cart VALUES ('$productID', '$userID', null, 1)");

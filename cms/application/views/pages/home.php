@@ -72,8 +72,6 @@
               <label for="inputTextImageURL">Image URL</label>
               <input type="file" class="form-control" id="inputTextImageURL" accept="image/*" onchange="viewBeforeInsertForAdd(this);">
             </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
             <div id="addPhotos" class="form-group"></div>
             <div id="loadingAdd" class="loading d-none align-items-center" style="margin-left:31%;">
               <div class="spinner-grow text-primary"></div>
@@ -81,28 +79,6 @@
               <div class="spinner-grow text-info"></div>
               <div class="spinner-grow text-warning"></div>
               <div class="spinner-grow text-danger"></div>
-=======
-            <div class="form-group">
-              <img id="addPhotos" src="#" alt="your image" class="img-thumbnail"/>
->>>>>>> fixing search feature, adding upload image feature
-=======
-            <div id="addPhotos" class="form-group"></div>
-<<<<<<< HEAD
-            <div class="loading d-flex align-items-center" style="margin-left:31%;">
-                <div class="spinner-grow text-primary"></div>
-                <div class="spinner-grow text-success"></div>
-                <div class="spinner-grow text-info"></div>
-                <div class="spinner-grow text-warning"></div>
-                <div class="spinner-grow text-danger"></div>
->>>>>>> add loading animation but not done yet
-=======
-            <div id="loadingAdd" class="loading d-none align-items-center" style="margin-left:31%;">
-              <div class="spinner-grow text-primary"></div>
-              <div class="spinner-grow text-success"></div>
-              <div class="spinner-grow text-info"></div>
-              <div class="spinner-grow text-warning"></div>
-              <div class="spinner-grow text-danger"></div>
->>>>>>> add load animation while uploading
             </div>
           </form>
         </div>
@@ -127,17 +103,8 @@
         <div class="modal-body">
           <form id="newProductForm">
             <input type="hidden" id="editTextProductID" />
-<<<<<<< HEAD
-<<<<<<< HEAD
             <input type="hidden" id="editHeroesID" />
             <input type="hidden" id="editImageLink" />
-=======
-            <input type="hidden" id="editTextLink"/>
->>>>>>> fixing search feature, adding upload image feature
-=======
-            <input type="hidden" id="editHeroesID" />
-            <input type="hidden" id="editImageLink" />
->>>>>>> fixing confused code
             <div class="form-group">
               <label for="editTextName">Name <a style="color: tomato">*</a></label>
               <input type="text" class="form-control" id="editTextName" placeholder="Enter product name...">
@@ -165,22 +132,7 @@
               <input type="file" class="form-control" id="editTextImageURL" accept="image/*" onchange="viewBeforeInsertForEdit(this);">
             </div>
             <div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
               <img id="editPhotos" src="#" alt="no image" class="img-thumbnail"/>
-            </div>
-            <div id="loadingEdit" class="loading d-none align-items-center" style="margin-left:31%;">
-              <div class="spinner-grow text-primary"></div>
-              <div class="spinner-grow text-success"></div>
-              <div class="spinner-grow text-info"></div>
-              <div class="spinner-grow text-warning"></div>
-              <div class="spinner-grow text-danger"></div>
-=======
-              <img id="editPhotos" src="#" alt="your image" class="img-thumbnail"/>
->>>>>>> fixing search feature, adding upload image feature
-=======
-              <img id="editPhotos" src="#" alt="no image" class="img-thumbnail"/>
->>>>>>> add loading animation but not done yet
             </div>
             <div id="loadingEdit" class="loading d-none align-items-center" style="margin-left:31%;">
               <div class="spinner-grow text-primary"></div>
@@ -198,7 +150,5 @@
       </div>
     </div>
   </div>
-
-
 </body>
 </html>

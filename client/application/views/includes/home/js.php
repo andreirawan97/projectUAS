@@ -2,7 +2,6 @@
   $(document).ready(() => {
     fetchLatestProducts();
 
-<<<<<<< HEAD
     $('#searchForm').on('submit', (e) =>{
       e.preventDefault();
 
@@ -23,8 +22,6 @@
         location.href="home/goToSearchResult";
       }
     })
-=======
->>>>>>> make a detail item page(responsive)
   })
 
   function fetchLatestProducts(){
@@ -34,12 +31,7 @@
 
       $('#latestItemContainer').html('');
       datas.forEach((data) => {
-<<<<<<< HEAD
-        console.log(data);
-        let {name, price, productID, heroesName, stock} = data;
-=======
-        let {name, description, productID, heroesName, quantity, heroesID} = data;
->>>>>>> make a detail item page(responsive)
+        let {name, description, productID, heroesName, quantity, heroesID, price, stock} = data;
         const productCard = `
           <div class="col-4" style="margin-top: 20px">
             <div class="card">
