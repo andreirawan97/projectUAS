@@ -23,6 +23,12 @@
           <!-- Content Here -->
           
         </div>
+
+        <div class="row" style="display: flex; justify-content: space-between; padding: 0px 15px 0px 15px;">
+          <h5 id="totalShell">Total Shell: NaN</h5>
+          <button id="btnCheckout" class="btn btn-success btn-sm"><i class="material-icons">shopping_basket</i> Checkout</button>
+        </div>
+        
       </div>
       <div class="col-2"></div>
     </div>
