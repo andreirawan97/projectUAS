@@ -74,9 +74,9 @@
 
                 <div class="input-group input-group-sm mb-3" style="width: 40%">
                   <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm" aria-label="Quantity must be less than or equal to ${stock}">Quantity</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm${productID}" aria-label="Quantity must be less than or equal to ${stock}">Quantity</span>
                   </div>
-                  <input id="inputTextQuantity" value="${quantity}" productID="${productID}" stock="${stock}" onChange="onChangeQuantity(this)" type="number" max="${stock}" min="1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  <input id="inputTextQuantity${productID}" value="${quantity}" productID="${productID}" stock="${stock}" onChange="onChangeQuantity(this)" type="number" max="${stock}" min="1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                   </div>
               </div>
               <div class="col-1">
@@ -161,18 +161,17 @@
   }
 
   function onChangeQuantity(btnObject){
-    let quantity = $('#inputTextQuantity').val().trim();
     let productID = btnObject.getAttribute('productID');
+    let quantityText = '#inputTextQuantity' + productID;
+    let quantity = $(quantityText).val().trim();
     let stock = btnObject.getAttribute('stock');
-
-    if(quantity > stock){
-      $('#inputGroup-sizing-sm').attr('class', 'input-group-text hint--bottom hint--bounce hint--error hint--rounded hint--always');
-    }else{
-      $('#inputGroup-sizing-sm').attr('class', 'input-group-text');
+    let infoText = '#inputGroup-sizing-sm' + productID;
+    
+    if(quantity <= stock){
+      $(infoText).attr('class', 'input-group-text');
 
       let {userData} = getLocalStorage();
       let {userID} = userData;
-
       let data = {
         userID,
         productID,
@@ -184,8 +183,10 @@
         
         _getCart();
       })
-      
+
       fetchShoppingCart();
+    }else{
+      $(infoText).attr('class', 'input-group-text hint--bottom hint--bounce hint--error hint--rounded hint--always');
     }
   }
 </script>
