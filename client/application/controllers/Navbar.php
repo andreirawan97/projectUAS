@@ -37,5 +37,17 @@
     public function goToHome(){
       redirect('home');
     }
+
+    public function goToEditProfile(){
+      redirect('editProfile');
+    }
+
+    public function goToChangePassword(){
+      redirect('changePassword');
+    }
+
+    public function goToIsiSaldo(){
+      redirect('isiSaldo');
+    }
   }
 ?>
