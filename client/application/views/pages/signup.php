@@ -30,9 +30,12 @@
 <div class="layout-transparent mdl-layout mdl-js-layout" style="display: flex; flex: 1; height: 100vh; justify-content: left; align-items: left">
     <div  style="height: 450px; width: 800px; background-image: white; border-radius: 20px; padding: 40px 80px 40px 80px;">
       <!-- Sidebar/menu -->
+      <nav class="browser-default mdl-navigation w3-collapse w3-transparent w3-animate-left">
+        <a style="margin-left:67px; color: white;"class="mdl-navigation__link" href="signup/goToLogin">Already have an account? Login Now!</a>
+      </nav>
       <nav class=" w3-collapse w3-transparent w3-animate-left" style="margin-top: 10px;" id="mySidebar"><br>
-        <div class="w3-container" style="color : white;" >
-        <h4 style="margin-left:50px; font-size:50px">SignUp</h4>
+          <div class="w3-container" style="color : white;" >
+          <h4 style="margin-left:50px; font-size:50px">SignUp</h4>
         <form id="formSignup" style="margin-top: 10px; margin-left: 50px">
               <div class="collumn" style="margin-bottom:20px">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
