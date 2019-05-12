@@ -36,5 +36,8 @@ class Home extends CI_Controller {
   public function goToSearchResult(){
     redirect('searchResult');
   }
+  public function goToDetail(){
+    redirect('detailItem');
+  }
 }
 ?>

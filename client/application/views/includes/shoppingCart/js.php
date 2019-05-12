@@ -52,7 +52,6 @@
       let {datas} = response;
       let totalBayar = 0;
       totalProduct = 0;
-
       $('#cartListContainer').html('');
 
       if(!datas.length){
@@ -60,7 +59,7 @@
       }
 
       datas.forEach((data) => {
-        let {name, quantity, stock, cartID, price} = data;
+        let {name, quantity, stock, cartID, price, productID} = data;
         totalProduct += 1;
         totalBayar += price * quantity;
         const card = `
@@ -75,10 +74,10 @@
 
                 <div class="input-group input-group-sm mb-3" style="width: 40%">
                   <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Quantity</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm${productID}" aria-label="Quantity must be less than or equal to ${stock}">Quantity</span>
                   </div>
-                  <input disabled id="inputTextQuantity" value="${quantity}" onKeyUp="onKeyUpQuantity(this)" type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                </div>
+                  <input id="inputTextQuantity${productID}" value="${quantity}" productID="${productID}" stock="${stock}" onChange="onChangeQuantity(this)" type="number" max="${stock}" min="1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
               </div>
               <div class="col-1">
                 <a 
@@ -133,4 +132,61 @@
     })
   }
 
+  function addToCart(btnObject){
+    let productName = btnObject.getAttribute('productName');
+    let productID = btnObject.getAttribute('productID');
+
+    let {userData} = getLocalStorage();
+    let {userID} = userData;
+
+    let data = {
+      userID,
+      productID,
+      quantity: 1,
+    }
+    $.post('home/updateCart', data, (res) => {
+      let response = JSON.parse(res);
+      
+      _getCart();
+    })
+
+    // Make the toast!!!  
+    iziToast.show({
+      title: 'Success',
+      message: 'Added to cart',
+      color: 'green',
+      timeout: 3000,
+      position: 'bottomCenter'
+    });
+  }
+
+  function onChangeQuantity(btnObject){
+    let productID = btnObject.getAttribute('productID');
+    let quantityText = '#inputTextQuantity' + productID;
+    let quantity = $(quantityText).val().trim();
+    let stock = btnObject.getAttribute('stock');
+    let infoText = '#inputGroup-sizing-sm' + productID;
+    
+    if(quantity <= stock){
+      $(infoText).attr('class', 'input-group-text');
+
+      let {userData} = getLocalStorage();
+      let {userID} = userData;
+      let data = {
+        userID,
+        productID,
+        quantity,
+      }
+      
+      $.post('shoppingCart/updateCart', data, (res) => {
+        let response = JSON.parse(res);
+        
+        _getCart();
+      })
+
+      fetchShoppingCart();
+    }else{
+      $(infoText).attr('class', 'input-group-text hint--bottom hint--bounce hint--error hint--rounded hint--always');
+    }
+  }
 </script>

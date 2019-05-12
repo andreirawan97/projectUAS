@@ -59,3 +59,6 @@ $route['home'] = 'home';
 $route['navbar'] = 'navbar';
 $route['shoppingCart'] = 'shoppingCart';
 $route['searchResult'] = 'searchResult';
+$route['cart'] = 'cart';
+$route['login'] = 'login';
+$route['detailItem'] = 'detailItem';

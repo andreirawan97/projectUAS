@@ -15,6 +15,7 @@
       },
       searchQuery: '',
       tmpProductID: '',
+      tmpHeroesID: '',
     }
 
     localStorage.setItem(lsName, JSON.stringify(initialData));
