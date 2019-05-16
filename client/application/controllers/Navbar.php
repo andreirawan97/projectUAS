@@ -49,5 +49,9 @@
     public function goToIsiSaldo(){
       redirect('isiSaldo');
     }
+
+    public function goToShoppingLog(){
+      redirect('shoppingLog');
+    }
   }
 ?>

@@ -14,7 +14,7 @@
 <body style="background-color: whitesmoke">
   <?php echo $NavigationBar ?>
 
-  <div class="container">
+  <div class="container" style="margin-bottom: 40px;  ">
     <div class="row">
       <div class="col-2"></div>
       <div class="col-8">

@@ -69,6 +69,11 @@
         <div id="latestItemContainer" class="row">
           <!-- To be added -->
         </div>
+
+        <h3 style="margin-top: 20px;">All Items</h3>
+        <div id="allItemContainer" class="row">
+          <!-- To be added -->
+        </div>
       </div>
       <div class="col-2"></div>
     </div>

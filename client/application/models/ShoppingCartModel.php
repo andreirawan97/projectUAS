@@ -99,5 +99,12 @@
     public function clearCart($userID){
       $this->db->query("DELETE FROM cart WHERE userID = '$userID'");
     }
+
+    public function addToShoppingLog($userID){
+      $currentCart = $this->getCart($userID);
+      foreach($currentCart as $cart) {
+        $this->db->query("INSERT INTO shoppingLog VALUES ('$cart[productID]', '$cart[userID]', null, null, '$cart[quantity]')");
+      }
+    }
   }
 ?>

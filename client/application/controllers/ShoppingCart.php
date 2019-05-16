@@ -66,6 +66,7 @@
         if($this->isStockExist($userID)){
           $this->ShoppingCartModel->reduceSaldo($userID);
           $this->ShoppingCartModel->reduceStock($userID);
+          $this->ShoppingCartModel->addToShoppingLog($userID);
           $this->ShoppingCartModel->clearCart($userID);
           echo json_encode(array('status' => 'ok', 'message' => 'Thank you!'));
         }
@@ -76,8 +77,7 @@
       else{
         echo json_encode(array('status' => 'err', 'message' => 'Saldo tidak cukup! Silahkan top up'));
       }
-
-      // Kalau udah lanjut proses
     }
   }
+
 ?>

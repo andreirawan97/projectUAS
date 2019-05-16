@@ -76,6 +76,7 @@
           <a href="navbar/goToIsiSaldo" id="textSaldo" class="dropdown-item">Shell: Loading...</a>
           <div class="dropdown-divider"></div>
           <a href="navbar/goToEditProfile" class="dropdown-item">Edit Profile</a>
+          <a href="navbar/goToShoppingLog" class="dropdown-item">View History</a>
           <a id="btnLogOut" href="#!" class="dropdown-item" style="color: red">Log Out</a>
         </div>
       </div>
