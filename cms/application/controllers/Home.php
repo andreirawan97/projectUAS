@@ -2,7 +2,7 @@
   class Home extends CI_Controller{
     public function __construct(){
       parent::__construct();
-
+      $this->load->library('session');
       // Load the model
       $this->load->model('HomeModel');
     }
@@ -13,9 +13,10 @@
       $data['css'] = $this->load->view('includes/home/css.php', NULL, TRUE);
       
       $data['navbar'] = $this->load->view('components/general/navbar.php', NULL, TRUE);
-
+   
       $this->load->view('pages/home.php', $data);
     }
+
 
     public function getAllProducts(){
       $allProducts = $this->HomeModel->getAllProducts();
@@ -75,6 +76,10 @@
       if($response){
         echo json_encode(array('status' => 'ok', 'message' => 'The product has been successfully updated!'));
       }
+    }
+
+    public function goToLoginCMS(){
+      redirect('loginCMS');
     }
   }
 ?>

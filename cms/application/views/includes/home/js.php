@@ -2,7 +2,20 @@
   $(document).ready(() => {
     renderAllProducts();
     renderOption();
-    
+    let user = localStorage.getItem("user");
+    if(user === null){
+      Swal.fire({
+        title: 'Error!',
+        text: 'You must login to acces this feature!',
+        type: 'error',
+        showCancelButton: false,
+        confirmButtonText: 'Bring me to login!'
+      }).then((result) => {
+        location.href = 'home/goToLoginCMS';
+      })
+    }
+
+
     $('#submitBtn').click(() => {
       let name = $('#inputTextName').val().trim();
       let price = $('#inputTextPrice').val().trim();
@@ -59,7 +72,7 @@
               heroID
             }
 
-            $.post('index.php/home/addNewProduct', data, (res) => {
+            $.post('home/addNewProduct', data, (res) => {
               let response = JSON.parse(res);
 
               let {status, message} = response;
@@ -109,7 +122,7 @@
             heroID
           }
 
-          $.post('index.php/home/addNewProduct', data, (res) => {
+          $.post('home/addNewProduct', data, (res) => {
             let response = JSON.parse(res);
 
             let {status, message} = response;
@@ -198,7 +211,7 @@
               heroesID
             }
 
-            $.post('index.php/home/updateProduct', data, (res) => {
+            $.post('home/updateProduct', data, (res) => {
               let response = JSON.parse(res);
 
               let {status, message} = response;
@@ -241,7 +254,7 @@
             heroesID
           }
 
-          $.post('index.php/home/updateProduct', data, (res) => {
+          $.post('home/updateProduct', data, (res) => {
             let response = JSON.parse(res);
 
             let {status, message} = response;
@@ -279,7 +292,7 @@
   })
 
   function renderAllProducts(){
-    $.get('index.php/home/getAllProducts', (res) => {
+    $.get('home/getAllProducts', (res) => {
       let response = JSON.parse(res);
       
       let {status, datas} = response;
@@ -326,7 +339,7 @@
   }
 
   function renderOption(){
-    $.get('index.php/home/getIdHeroes', (res) => {
+    $.get('home/getIdHeroes', (res) => {
       let response = JSON.parse(res);
       let {status, datas} = response;
       if(status === 'ok'){
@@ -356,7 +369,7 @@
       if (result.value) {
         let productID = objBtn.getAttribute('productID');
 
-        $.post('index.php/home/deleteProduct', {productID}, (res) => {
+        $.post('home/deleteProduct', {productID}, (res) => {
           let response = JSON.parse(res);
 
           let {status, message} = response;
@@ -397,7 +410,7 @@
   }
 
   function renderSearchedProducts(searchKeyword){
-    $.post('index.php/home/getSearchedProducts', {searchKeyword}, (res) => {
+    $.post('home/getSearchedProducts', {searchKeyword}, (res) => {
       let response = JSON.parse(res);
       
       let {status, datas} = response;
@@ -478,5 +491,10 @@
         }
         reader.readAsDataURL(input.files[0]);
     }
+  }
+
+  function logOut(){
+    localStorage.clear();
+    location.href = 'home/goToLoginCMS';
   }
 </script>

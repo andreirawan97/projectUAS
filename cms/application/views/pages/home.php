@@ -10,7 +10,6 @@
 <body>
   <?php echo $navbar ?>
 
-
   <div class='container' style="margin-top: 20px">
 
     <button id='addNewBtn' type='button' class='btn btn-primary btn-sm' data-toggle="modal" data-target="#addNewModal">Add New Item</button>
