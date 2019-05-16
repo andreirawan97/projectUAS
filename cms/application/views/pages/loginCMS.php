@@ -34,7 +34,7 @@
           <div class="mdl-grid w3-animate-bottom">
             <div style="text-align:center;">
             <form class="w3-collapse" action="#!" id="loginForm">
-              <h4 style="text-align:center; font-size:150%">LoginCMS</h4>
+              <h4 style="text-align:center; font-size:150%">Administrator Login</h4>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input autocorrect="off" autocomplete="off" class="mdl-textfield__input mdl-color-text--grey" type="text" id="username">
                 <label class="mdl-textfield__label mdl-color-text--black"for="username">Username</label>
