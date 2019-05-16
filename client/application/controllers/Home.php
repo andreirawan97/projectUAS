@@ -23,6 +23,12 @@ class Home extends CI_Controller {
     echo json_encode(array('datas' => $response));
   }
 
+  public function fetchAllProducts(){
+    $response = $this->HomeModel->fetchAllProducts();
+
+    echo json_encode(array('datas' => $response));
+  }
+
   public function updateCart(){
     $userID = $this->input->post('userID');
     $productID = $this->input->post('productID');

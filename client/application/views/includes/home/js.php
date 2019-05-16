@@ -1,6 +1,7 @@
 <script>
   $(document).ready(() => {
     fetchLatestProducts();
+    fetchAllProducts();
 
     $('#searchForm').on('submit', (e) =>{
       e.preventDefault();
@@ -70,6 +71,56 @@
         `;
 
         $('#latestItemContainer').append(productCard);
+      })
+    });
+  }
+
+  function fetchAllProducts(){
+    $.get('home/fetchAllProducts', (res) => {
+      let response = JSON.parse(res);
+      let {datas} = response;
+
+      $('#allItemContainer').html('');
+      datas.forEach((data) => {
+        let {name, description, productID, heroesName, quantity, heroesID, price, stock,imageURL} = data;
+        const productCard = `
+          <div class="col-sm-12 col-lg-4" style="margin-top: 20px">
+            <div class="card">
+              <img src="${imageURL}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title text-truncate" style="font-size: 15px; display: inline-block; max-width: 150px;">${name}</h5>
+                <p class="card-text" style="font-size: 12px;">
+                  <a onClick="searchByHero(this)" href="#!" heroName="${heroesName}" class="card-text" style="font-size: 12px;">${heroesName}</a>
+                  <br />Harga: ${price} Shell
+                  <br />Stok: ${stock}
+                </p>
+                <button
+                  id="btnDetail"
+                  productID="${productID}"
+                  heroesID="${heroesID}"
+                  onClick='goToDetail(this)'
+                  type="button" 
+                  class="btn btn-outline-info btn-sm btn-block btnDetail"
+                  style="margin-bottom: 5px">View Detail
+                </button>
+                <a 
+                  href="#!" 
+                  class="btn btn-primary btn-sm btn-block"
+                  productName="${name}"
+                  productID="${productID}"
+                  onClick="addToCart(this)"
+                >
+                    <i class="material-icons" style="font-size: 13px; margin-right: 5px;">
+                      shopping_cart
+                    </i>
+                    Add to cart (+1)
+                </a>
+              </div>
+            </div>       
+          </div>
+        `;
+
+        $('#allItemContainer').append(productCard);
       })
     });
   }

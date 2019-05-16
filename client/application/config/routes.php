@@ -62,3 +62,4 @@ $route['searchResult'] = 'searchResult';
 $route['detailItem'] = 'detailItem';
 $route['editProfile'] = 'editProfile';
 $route['isiSaldo'] = 'isiSaldo';
+$route['shoppingLog'] = 'shoppingLog';
