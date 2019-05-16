@@ -5,10 +5,10 @@
     $('#formEditProfile').submit((e) => {
       e.preventDefault();
       
-      let userID = $('#userID').val().trim();
-      let firstName = $('#firstName').val().trim();
-      let lastName = $('#lastName').val().trim();
-      let email = $('#email').val().trim();
+      let userID = $('#userID').val();
+      let firstName = $('#firstName').val();
+      let lastName = $('#lastName').val();
+      let email = $('#email').val();
       let fullName = `${firstName} ${lastName}`;
 
       let data = {

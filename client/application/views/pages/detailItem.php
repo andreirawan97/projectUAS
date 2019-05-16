@@ -13,7 +13,7 @@
 </head>
 <body>
     <?php echo $NavigationBar ?>
-    <div class="card mx-auto col-11">
+    <div class="card mx-auto col-11" style="margin-bottom: 70px;">
         <div class="card-body">
             <div class="miniView1 row d-block d-md-none mx-auto"></div>
             <div class="row">

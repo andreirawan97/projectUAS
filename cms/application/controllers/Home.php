@@ -41,12 +41,12 @@
     public function addNewProduct(){
       $name = $this->input->post('name');
       $price = $this->input->post('price');
-      $quantity = $this->input->post('quantity');
+      $stock = $this->input->post('stock');
       $description = $this->input->post('description');
       $imageURL = $this->input->post('imageURL');
       $heroID = $this->input->post('heroID');
 
-      $response = $this->HomeModel->addNewProduct($name, $price, $quantity, $description, $imageURL, $heroID);
+      $response = $this->HomeModel->addNewProduct($name, $price, $stock, $description, $imageURL, $heroID);
     
       if($response){
         echo json_encode(array('status' => 'ok', 'message' => 'The product has been successfully added!'));
@@ -67,12 +67,12 @@
       $productID = $this->input->post('productID');
       $name = $this->input->post('name');
       $price = $this->input->post('price');
-      $quantity = $this->input->post('quantity');
+      $stock = $this->input->post('stock');
       $description = $this->input->post('description');
       $imageURL = $this->input->post('imageURL');
       $heroesID = $this->input->post('heroesID');
 
-      $response = $this->HomeModel->updateProduct($name, $price, $quantity, $description, $imageURL,$productID, $heroesID);
+      $response = $this->HomeModel->updateProduct($name, $price, $stock, $description, $imageURL,$productID, $heroesID);
       if($response){
         echo json_encode(array('status' => 'ok', 'message' => 'The product has been successfully updated!'));
       }

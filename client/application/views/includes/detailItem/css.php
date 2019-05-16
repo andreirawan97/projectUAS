@@ -1,5 +1,5 @@
 <style>
- tml,body {
+ html,body {
     background-color: #714daf;
 }
 .card {
@@ -11,7 +11,7 @@
 }
 
 .largeView a{
-    margin-top: 7px;
+    margin-top: 20px;
 }
 
 .miniView1 h4{

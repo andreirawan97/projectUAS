@@ -59,35 +59,35 @@
       }
 
       datas.forEach((data) => {
-        let {name, quantity, stock, cartID, price, productID} = data;
+        let {name, quantity, stock, cartID, price, productID,imageURL} = data;
         totalProduct += 1;
         totalBayar += price * quantity;
         const card = `
           <div class="card" style="padding: 20px 20px 20px 20px; margin: 20px 0px 20px 0px;">
             <div class="row">
-              <div class="col-4">
-                <img src="<?php echo base_url('assets/noImage.jpg') ?>" class="card-img-top" alt="..." style="width: 150px;">
+              <div class="col-lg-4 col-sm-6">
+                <img src="${imageURL}" class="card-img-top" alt="...">
               </div>
-              <div class="col-7" style="padding: 10px 10px 10px 10px;">
+              <div class="col-lg-7 col-sm-5" style="padding: 10px 10px 10px 10px;">
                 <h4 class="text-truncate" style="display: inline-block; max-width: 400px;">${name}</h4>
                 <p>Stok Tersedia: ${stock} <br />Harga Satuan: ${price} Shell</p>
-
                 <div class="input-group input-group-sm mb-3" style="width: 40%">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm${productID}" aria-label="Quantity must be less than or equal to ${stock}">Quantity</span>
                   </div>
                   <input id="inputTextQuantity${productID}" value="${quantity}" productID="${productID}" stock="${stock}" onChange="onChangeQuantity(this)" type="number" max="${stock}" min="1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                  </div>
+                </div>
               </div>
-              <div class="col-1">
+              <div class="col-lg-1 col-sm-1">
                 <a 
                   href="#!"
+                  class=""
                   onClick="deleteCart(this)"
                   cartID="${cartID}"
                   style="float: right;"
                 >
-                  <i class="material-icons" style="font-size: 25px; color: grey;">
-                    close
+                  <i class="material-icons" style="font-size: 25px; color: #d32f2f;">
+                    delete_forever
                   </i>
                 </a>
               </div>

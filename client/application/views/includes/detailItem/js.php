@@ -25,7 +25,7 @@
                     <p>Stock : ${stock}</p>
                     <p>Price : $${price} </p>
                     <hr>
-                    ${description}
+                    <i>${description !== '' ? description : '<i>No Description</i>'}</i>
                 `);
                 $('.btnAddForHp').html(`
                     <a 
@@ -47,7 +47,7 @@
                     <p>Price : $${price} </p>
                     <a 
                         href="#!" 
-                        class="btn btn-primary btn-sm btn-block"
+                        class="btn btn-primary btn-block"
                         productName="${name}"
                         productID="${productID}"
                         onClick="addToCart(this)"
@@ -57,7 +57,7 @@
                     Add to cart (+1)
                     </a>
                     <hr>
-                    <p>${description}</p>
+                    <p>${description !== '' ? description : "<i>No Description</i>"}</p>
                 `);
                 $('#productImage').attr('src', imageURL);
             })
@@ -75,7 +75,7 @@
                 if(productID === tmpProductID){
 
                 }else{
-                    $('.textForAnotherProduct').html(`<h5>another item for ${heroesName} :</h5>`);
+                    $('.textForAnotherProduct').html(`<h5>Another item for ${heroesName} :</h5>`);
                     $('.anotherProduct').append(`
                     <div class="col-sm-3">
                         <div class="card">
@@ -84,7 +84,7 @@
                                 <h5 class="card-title text-truncate" style="font-size: 15px; display: inline-block; max-width: 150px;">${name}</h5>
                                 <p class="card-text" style="font-size: 12px;">
                                 <a href="#! class="card-text" style="font-size: 12px;">${heroesName}</a>
-                                <br />${description || '<i>No Description</i>'}
+                                <br />${description !== '' ? description : '<i>No Description</i>'}
                                 <br />Stok: ${stock}
                                 </p>
                                 <button

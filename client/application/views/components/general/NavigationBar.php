@@ -71,7 +71,7 @@
         <a href="#!"  class="dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false" style="color: #7e57c2">
           <i class="material-icons" style="color: white">person</i>
         </a>
-        <div class="dropdown-menu dropdown-menu-lg-right">
+        <div class="dropdown-menu dropdown-menu-right">
           <a href="#!" id="textUsername" class="dropdown-item">Username...</a>
           <a href="navbar/goToIsiSaldo" id="textSaldo" class="dropdown-item">Shell: Loading...</a>
           <div class="dropdown-divider"></div>
