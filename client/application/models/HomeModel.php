@@ -21,7 +21,7 @@
 
     // Public method
     public function fetchLatestProducts(){
-      $query = $this->db->query("SELECT * FROM products INNER JOIN heroes ON products.heroesID = heroes.heroesID ORDER BY products.productID DESC ");
+      $query = $this->db->query("SELECT * FROM products INNER JOIN heroes ON products.heroesID = heroes.heroesID ORDER BY products.productID DESC LIMIT 9 ");
       $row = $query->result_array();
 
       return $row;

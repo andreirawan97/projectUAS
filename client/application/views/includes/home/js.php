@@ -39,7 +39,7 @@
               <div class="card-body">
                 <h5 class="card-title text-truncate" style="font-size: 15px; display: inline-block; max-width: 150px;">${name}</h5>
                 <p class="card-text" style="font-size: 12px;">
-                  <a href="#! class="card-text" style="font-size: 12px;">${heroesName}</a>
+                  <a onClick="searchByHero(this)" href="#!" heroName="${heroesName}" class="card-text" style="font-size: 12px;">${heroesName}</a>
                   <br />Harga: ${price} Shell
                   <br />Stok: ${stock}
                 </p>
@@ -72,6 +72,18 @@
         $('#latestItemContainer').append(productCard);
       })
     });
+  }
+
+  function searchByHero(btnObj){
+    let heroName = btnObj.getAttribute('heroName');
+
+    let tokoDoto = getLocalStorage();
+    let newTokoDoto = {
+      ...tokoDoto,
+      searchQuery: heroName,
+    }
+    setLocalStorage(newTokoDoto);
+    location.href="home/goToSearchResult"
   }
 
   function addToCart(btnObject){

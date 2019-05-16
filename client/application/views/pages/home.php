@@ -15,8 +15,7 @@
   <?php echo $NavigationBar ?>
   <div class="container" style="margin-bottom: 20px;">
     <div class="row">
-      <div class="col-2"></div>
-      <div class="col-8">
+      <div class="offset-lg-2 col-lg-8">
         <!-- Carousel -->
         <div class="bd-example" style="margin-top: 5px;">
           <div id="carouselPromo" class="carousel slide" data-ride="carousel">
