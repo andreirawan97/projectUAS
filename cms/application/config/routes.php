@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['loginCMS'] = 'loginCMS';
 $route['home'] = 'home';
+$route['history'] = 'history';

@@ -13,6 +13,8 @@
       $data['css'] = $this->load->view('includes/home/css.php', NULL, TRUE);
       
       $data['navbar'] = $this->load->view('components/general/navbar.php', NULL, TRUE);
+      $data['navbarjs'] = $this->load->view('components/general/navbarjs.php', NULL, TRUE);
+
    
       $this->load->view('pages/home.php', $data);
     }
@@ -80,6 +82,10 @@
 
     public function goToLoginCMS(){
       redirect('loginCMS');
+    }
+
+    public function goToHistory(){
+      redirect('history');
     }
   }
 ?>
