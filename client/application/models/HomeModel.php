@@ -21,6 +21,7 @@
 
     // Public method
     public function fetchLatestProducts(){
+<<<<<<< HEAD
       $query = $this->db->query("SELECT * FROM products INNER JOIN heroes ON products.heroesID = heroes.heroesID ORDER BY products.productID DESC LIMIT 3");
       $row = $query->result_array();
 
@@ -29,6 +30,9 @@
 
     public function fetchAllProducts(){
       $query = $this->db->query("SELECT * FROM products INNER JOIN heroes ON products.heroesID = heroes.heroesID ORDER BY products.name ASC");
+=======
+      $query = $this->db->query("SELECT * FROM products INNER JOIN heroes ON products.heroesID = heroes.heroesID ORDER BY products.productID DESC LIMIT 9 ");
+>>>>>>> Add responsive on client pages
       $row = $query->result_array();
 
       return $row;
