@@ -4,6 +4,7 @@
   <?php echo $library ?>
   <?php echo $js ?>
   <?php echo $css ?>
+  <?php echo $navbarjs ?>
   
   <title>CMS - Home</title>
 </head>
