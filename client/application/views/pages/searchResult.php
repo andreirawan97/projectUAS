@@ -13,14 +13,16 @@
 </head>
 <body style="background-color: #7e57c2">
   <!-- Back Button -->
-  <a href="searchResult/goToHome" style="position: absolute; top: 0; left: 0; margin: 30px 0px 0px 30px;">
-    <i class="material-icons" style="color: white; font-size: 42px;">arrow_back</i>
-  </a>
+  <div id="backArrow">
+    <a href="searchResult/goToHome">
+      <i class="material-icons" style="color: white; font-size: 42px;">arrow_back</i>
+    </a>
+  </div>
 
   <div class="container">
     <div class="row">
-      <div class="col-2"></div>
-      <div class="col-8" style="padding-top: 70px;">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8" style="padding-top: 70px;">
         <h2 style="color: white; margin-bottom: 20px;">Search Result</h2>
         <h5 id="showResultFor" style="color: white;">Show X result for ""</h5>
         <div id="resultContainer" class="row">
