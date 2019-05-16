@@ -30,7 +30,7 @@
                 <img src="<?php echo base_url('assets/promo1.jpg') ?>" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                   <h5>Comeback!</h5>
-                  <p>Ayo beli Desert Sands Baby Roshan sekarang!</p>
+                  <p>Now On SALE!!! Desert Sands Baby Roshan available to be purchased, Get it now</p>
                 </div>
               </div>
               <div class="carousel-item">
