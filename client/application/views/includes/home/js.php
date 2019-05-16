@@ -31,11 +31,11 @@
 
       $('#latestItemContainer').html('');
       datas.forEach((data) => {
-        let {name, description, productID, heroesName, quantity, heroesID, price, stock} = data;
+        let {name, description, productID, heroesName, quantity, heroesID, price, stock,imageURL} = data;
         const productCard = `
-          <div class="col-4" style="margin-top: 20px">
+          <div class="col-sm-12 col-lg-4" style="margin-top: 20px">
             <div class="card">
-              <img src="<?php echo base_url('/assets/noImage.jpg') ?>" class="card-img-top" alt="...">
+              <img src="${imageURL}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title text-truncate" style="font-size: 15px; display: inline-block; max-width: 150px;">${name}</h5>
                 <p class="card-text" style="font-size: 12px;">
