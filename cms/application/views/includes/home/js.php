@@ -19,7 +19,7 @@
     $('#submitBtn').click(() => {
       let name = $('#inputTextName').val().trim();
       let price = $('#inputTextPrice').val().trim();
-      let quantity = $('#inputTextQuantity').val().trim();
+      let stock = $('#inputTextQuantity').val().trim();
       let description = $('#inputTextDescription').val().trim();
       let file = $('#inputTextImageURL').get(0).files;
       let heroName = $('#inputHeroName').val().trim();
@@ -55,7 +55,7 @@
           let {link} = data;
           let imageURL = link;
           
-          if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+          if(isEmpty(name) || isEmpty(price) || isEmpty(stock)){
             Swal.fire(
               'Error!',
               'Name, price, or quantity cannot be empty!',
@@ -66,7 +66,7 @@
             let data = {
               name,
               price,
-              quantity,
+              stock,
               description,
               imageURL,
               heroID
@@ -105,7 +105,7 @@
         });
       }else{ //insert database wo/ image
         imageURL = '';
-        if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+        if(isEmpty(name) || isEmpty(price) || isEmpty(stock)){
           Swal.fire(
             'Error!',
             'Name, price, or quantity cannot be empty!',
@@ -116,7 +116,7 @@
           let data = {
             name,
             price,
-            quantity,
+            stock,
             description,
             imageURL,
             heroID
@@ -159,7 +159,7 @@
       let productID = $('#editTextProductID').val().trim();
       let name = $('#editTextName').val().trim();
       let price = $('#editTextPrice').val().trim();
-      let quantity = $('#editTextQuantity').val().trim();
+      let stock = $('#editTextQuantity').val().trim();
       let description = $('#editTextDescription').val().trim();
       let heroesName = $('#editHeroName').val().trim();
       let heroesID = $('#editHeroesID').val().trim();
@@ -193,7 +193,7 @@
           let {link} = data;
           imageURL = link;
           
-          if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+          if(isEmpty(name) || isEmpty(price) || isEmpty(stock)){
             Swal.fire(
               'Error!',
               'Name, price, or quantity cannot be empty!',
@@ -204,7 +204,7 @@
             let data = {
               name,
               price,
-              quantity,
+              stock,
               description,
               imageURL,
               productID,
@@ -236,7 +236,7 @@
           }
         });
       }else{
-        if(isEmpty(name) || isEmpty(price) || isEmpty(quantity)){
+        if(isEmpty(name) || isEmpty(price) || isEmpty(stock)){
           Swal.fire(
             'Error!',
             'Name, price, or quantity cannot be empty!',
@@ -247,7 +247,7 @@
           let data = {
             name,
             price,
-            quantity,
+            stock,
             description,
             imageURL,
             productID,
@@ -299,14 +299,14 @@
       if(status === 'ok'){
         $('#tbodyProducts').html('');
         datas.forEach((data, i) => {
-          let {productID, name, price, quantity, description,imageURL, heroesID, heroesName} = data;
+          let {productID, name, price, stock, description,imageURL, heroesID, heroesName} = data;
             $('#tbodyProducts').append(`
             <tr>
               <th scope='row'>${i+1}</th>
               <td>${name}</td>
               <td>${heroesName}</td>
               <td>$${price}</td>
-              <td>${quantity}</td>
+              <td>${stock}</td>
               <td>${description !== '' ? description : `<i>No Description</i>`}</td>
               <td>
               <button 
@@ -314,7 +314,7 @@
                   productID='${productID}'
                   name='${name}'
                   price='${price}'
-                  quantity='${quantity}'
+                  stock='${stock}'
                   description='${description}'
                   imageURL='${imageURL}'
                   heroesName='${heroesName}'
@@ -391,7 +391,7 @@
     let productID = objBtn.getAttribute('productID');
     let name = objBtn.getAttribute('name');
     let price = objBtn.getAttribute('price');
-    let quantity = objBtn.getAttribute('quantity');
+    let stock = objBtn.getAttribute('stock');
     let description = objBtn.getAttribute('description');
     let imageURL = objBtn.getAttribute('imageURL');
     let heroesName = objBtn.getAttribute('heroesName');
@@ -402,7 +402,7 @@
     $('#editHeroesID').val(heroesID);
     $('#editTextName').val(name);
     $('#editTextPrice').val(price);
-    $('#editTextQuantity').val(quantity);
+    $('#editTextQuantity').val(stock);
     $('#editTextDescription').val(description);
     $('#editHeroName').val(heroesName);
     $('#editPhotos').attr('src', imageURL);
@@ -417,14 +417,14 @@
       if(status === 'ok'){
         $('#tbodyProducts').html('');
         datas.forEach((data, i) => {
-          let {productID, name, price, quantity, description,imageURL, heroesID, heroesName} = data;
+          let {productID, name, price, stock, description,imageURL, heroesID, heroesName} = data;
             $('#tbodyProducts').append(`
             <tr>
               <th scope='row'>${i+1}</th>
               <td>${name}</td>
               <td>${heroesName}</td>
               <td>$${price}</td>
-              <td>${quantity}</td>
+              <td>${stock}</td>
               <td>${description !== '' ? description : `<i>No Description</i>`}</td>
               <td>
               <button 
@@ -432,7 +432,7 @@
                   productID='${productID}'
                   name='${name}'
                   price='${price}'
-                  quantity='${quantity}'
+                  stock='${stock}'
                   description='${description}'
                   imageURL='${imageURL}'
                   heroesName='${heroesName}'

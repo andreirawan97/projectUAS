@@ -5,7 +5,7 @@
       $query = $this->db->query('SELECT products.productID,
       products.name,
       products.price, 
-      products.quantity, 
+      products.stock, 
       products.description, 
       products.imageURL,
       heroes.heroesID,
@@ -27,7 +27,7 @@
       $query = $this->db->query("SELECT products.productID,
       products.name,
       products.price, 
-      products.quantity, 
+      products.stock, 
       products.description, 
       products.imageURL,
       heroes.heroesID,
@@ -40,8 +40,8 @@
       return $query->result_array();
     }
 
-    function addNewProduct($name, $price, $quantity, $description, $imageURL, $heroID){
-      $this->db->query("INSERT INTO products VALUES (null, '$name', '$price', '$quantity', '$description', '$imageURL', '$heroID')");
+    function addNewProduct($name, $price, $stock, $description, $imageURL, $heroID){
+      $this->db->query("INSERT INTO products VALUES (null, '$name', '$price', '$stock', '$description', '$imageURL', '$heroID')");
       
       return true;
     }
@@ -52,10 +52,10 @@
       return true;
     }
 
-    function updateProduct($name, $price, $quantity, $description, $imageURL, $productID, $heroesID){
+    function updateProduct($name, $price, $stock, $description, $imageURL, $productID, $heroesID){
       $this->db->query("UPDATE products SET name = '$name',
        price = '$price',
-       quantity = '$quantity', 
+       stock = '$stock', 
        description = '$description',
        imageURL = '$imageURL',
        heroesID = '$heroesID'
